@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\adity\\\\OneDrive\\\\Documents\\\\Portfolio Website\" && mkdir -p assets/docs assets/images/favicon assets/images/og assets/videos && cp \"C:\\\\Users\\\\adity\\\\Downloads\\\\Resume_Aditya_Bhavsar_August.pdf\" \"assets/docs/Resume_Aditya_Bhavsar.pdf\" && ls -la assets/docs)",
+      "Bash(python3 -c \"from PIL import Image; print\\('ok'\\)\")",
+      "Bash(python -c \"from PIL import Image; print\\('ok'\\)\")",
+      "Bash(python -c \"from PIL import Image; print\\('PIL OK'\\); import sys; print\\(sys.version\\)\")",
+      "Bash(python3 -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(pip install *)",
+      "Bash(python3 -m pip install Pillow)",
+      "Bash(python -c ' *)",
+      "Bash(python \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\gen_images.py\")",
+      "Bash(python \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\gen_posters.py\")",
+      "Bash(python -)",
+      "Bash(sed -i 's/make_poster\\(\"airp-hero-poster.jpg\", \"\\\\/\\\\/ airp — hero demo\", \"AIRP\", \"60-second walkthrough — poster pending final render\"\\)/make_poster\\(\"airp-hero-poster.jpg\", \"\\\\/\\\\/ airp: hero demo\", \"AIRP\", \"60-second walkthrough, poster pending final render\"\\)/' gen_posters.py)",
+      "Bash(sed -i 's/make_poster\\(\"airp-deep-dive-poster.jpg\", \"\\\\/\\\\/ airp — deep dive\", \"Architecture \\\\& Full Walkthrough\", \"3-4 minute deep dive — poster pending final render\"\\)/make_poster\\(\"airp-deep-dive-poster.jpg\", \"\\\\/\\\\/ airp: deep dive\", \"Architecture \\\\& Full Walkthrough\", \"3-4 minute deep dive, poster pending final render\"\\)/' gen_posters.py)",
+      "Bash(python gen_posters.py)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\airp_ref\")",
+      "Bash(unzip -o -q \"C:\\\\Users\\\\adity\\\\Downloads\\\\AIRP---Autonomous-Investment-Research-Platform-main \\(5\\).zip\")",
+      "Bash(python \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\gen_note_og.py\")"
+    ]
+  }
+}

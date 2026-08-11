@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Why Adversarial Debate, Not a Single LLM Judge | Aditya Bhavsar</title>
+<meta name="description" content="Notes on why AIRP's Contrarian Investor agent attacking the consensus produces a more trustworthy verdict than asking one model to grade its own reasoning.">
+<!-- TODO: set real domain once deployed, e.g. <link rel="canonical" href="https://yourdomain.com/notes/adversarial-debate.html"> -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Adversarial Debate, Not a Single LLM Judge | Aditya Bhavsar">
+<meta property="og:description" content="Notes on why AIRP's Contrarian Investor agent attacking the consensus produces a more trustworthy verdict than asking one model to grade its own reasoning.">
+<meta property="og:image" content="assets/images/og/og-note-adversarial-debate.png">
+<!-- TODO: set real domain once deployed, e.g. <meta property="og:url" content="https://yourdomain.com/notes/adversarial-debate.html"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Adversarial Debate, Not a Single LLM Judge | Aditya Bhavsar">
+<meta name="twitter:description" content="Notes on why AIRP's Contrarian Investor agent attacking the consensus produces a more trustworthy verdict than asking one model to grade its own reasoning.">
+<meta name="twitter:image" content="assets/images/og/og-note-adversarial-debate.png">
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<!-- Analytics: Plausible (privacy-friendly, cookieless, no consent banner needed).
+     1. Sign up at https://plausible.io and add this site.
+     2. Replace "yourdomain.com" below with your real domain.
+     3. Uncomment the script tag. -->
+<!-- <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e0b; color: #e7ebf0; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background:
+    radial-gradient(55% 45% at 8% 5%, rgba(53,184,119,0.11), transparent 60%),
+    radial-gradient(46% 42% at 94% 16%, rgba(163,204,74,0.07), transparent 62%),
+    radial-gradient(60% 55% at 50% 104%, rgba(31,138,85,0.10), transparent 60%); }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
+  a { color: #35b877; text-decoration: none; }
+  a:hover { color: #5fd6c8; }
+  ::selection { background: rgba(53,184,119,0.28); }
+  a:focus-visible, button:focus-visible { outline:2px solid #57d295; outline-offset:2px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){ *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; } }
+  .note-body p { margin: 0 0 18px; font-size: 16px; color: #c3ccd8; line-height: 1.75; max-width: 74ch; }
+  .note-body h2 { margin: 44px 0 14px; font-size: 22px; letter-spacing: -0.015em; font-weight: 600; color: #f4f6fa; }
+  .note-body .stat { display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:13px; color:#8fecc0; border:1px solid #436a3d; background:rgba(53,184,119,0.06); padding:3px 10px; border-radius:7px; white-space:nowrap; }
+</style>
+</helmet>
+
+<div style="position:relative;z-index:1;min-height:100vh;">
+
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;backdrop-filter:blur(14px);background:rgba(10,14,11,0.72);border-bottom:1px solid #182016;">
+    <div style="max-width:800px;margin:0 auto;height:100%;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="Portfolio.dc.html" style="display:flex;align-items:center;gap:10px;color:#e7ebf0;">
+        <span style="width:22px;height:22px;border-radius:6px;background:#35b877;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px;color:#05100e;transition:transform .3s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:perspective(200px) rotateY(25deg) rotateX(-12deg) scale(1.08)">A</span>
+        <span style="font-weight:600;font-size:15px;letter-spacing:-0.01em;">Aditya Bhavsar</span>
+      </a>
+      <a href="Portfolio.dc.html#how-i-think" style="display:inline-flex;align-items:center;gap:8px;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;" style-hover="color:#e7ebf0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+        All notes
+      </a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <article style="position:relative;max-width:800px;margin:0 auto;padding:128px 32px 64px;">
+    <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#828d9c;">
+      <a href="Portfolio.dc.html#projects" style="color:#828d9c;">projects</a> <span style="color:#3c463a;">/</span> <a href="AIRP.dc.html" style="color:#828d9c;">airp</a> <span style="color:#3c463a;">/</span> <span style="color:#9ba6b4;">notes</span>
+    </div>
+    <div data-reveal style="margin-top:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#35b877;border:1px solid rgba(53,184,119,0.35);background:rgba(53,184,119,0.08);padding:3px 10px;border-radius:999px;white-space:nowrap;">Multi-agent design</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">~4 min read</span>
+    </div>
+    <h1 data-reveal style="margin:16px 0 0;font-size:clamp(28px,6vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:700;color:#f4f6fa;">Why AIRP uses adversarial debate instead of a single LLM judge</h1>
+    <p data-reveal style="margin:18px 0 0;font-size:18px;color:#c3ccd8;line-height:1.5;max-width:66ch;">A Contrarian agent that attacks the consensus, and why that produces a more trustworthy verdict than asking one model to grade its own reasoning.</p>
+
+    <div data-reveal class="note-body" style="margin-top:44px;">
+      <p>Ask a single LLM "should I invest in this company?" and you get one confident answer with nothing behind it to scrutinize. Nobody checked its work. In <a href="AIRP.dc.html">AIRP</a>, that's not how the verdict gets built. Four research agents produce a first pass, but before anything reaches a decision, a fifth agent's entire job is to attack it.</p>
+
+      <h2>The setup</h2>
+      <p>The Contrarian Investor agent reads every prior output in the shared state (fundamental, technical, sentiment, macro, and risk) and produces a structured report: a list of counter-arguments, the single strongest one the Portfolio Manager has to address, and a <span class="stat">bear_conviction</span> score from 1-10 representing how wrong the consensus might be.</p>
+      <p>It runs as a two-stage pipeline. Stage one builds counter-arguments deterministically, straight from the structured data the research agents already produced, no LLM call yet. Stage two hands that to an LLM to write the narrative and surface overlooked risks the deterministic pass wouldn't catch. The ordering is the point: the counter-argument list is populated before the model ever runs, so if the LLM call fails, the pipeline still has something real to work with instead of an empty report.</p>
+
+      <h2>Why the conviction score isn't the LLM's call</h2>
+      <p><span class="stat">bear_conviction</span> is computed deterministically from the strength of the bullish signals versus the weight of the risk flags already in state. The LLM can write the argument, but it can't inflate or deflate the number that decides whether the committee argues again. That split exists on purpose: a model narrating "why this is risky" is doing something very different from a model self-grading "how risky is this, really," and conflating the two is exactly the failure mode a single-judge design has no way to catch.</p>
+
+      <h2>The debate loop</h2>
+      <p>When <span class="stat">bear_conviction &ge; 7</span>, the pipeline runs another round, capped at <span class="stat">MAX_DEBATE_ROUNDS = 2</span> so a stubborn disagreement can't loop forever. The routing decision itself lives in a small, pure function evaluated only after that round's transcript has actually been appended to state, so there's never a round counted before it happened.</p>
+
+      <h2>What the Portfolio Manager does with it</h2>
+      <p>The verdict isn't just "here's what the Contrarian said." A high bear_conviction directly discounts the confidence score, and running two full debate rounds is treated as its own signal: a committee that argued twice and still couldn't agree is a different verdict than one that agreed instantly. The final memo includes human-readable debate highlights pulled straight from the transcript, so the disagreement is visible, not just factored in silently.</p>
+
+      <h2>The trade-off</h2>
+      <p>This costs latency. Every debate round is another set of LLM calls in the critical path, and AIRP's whole pitch is a memo in under 90 seconds. But a fast verdict that a real investment committee would have shredded on sight isn't actually useful. It's just confident-sounding. The debate loop is the part of the system that makes the 90-second number honest.</p>
+    </div>
+
+    <div data-reveal style="margin-top:56px;padding-top:28px;border-top:1px solid #1b261b;">
+      <a href="AIRP.dc.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#35b877;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+        Back to the AIRP case study
+      </a>
+    </div>
+  </article>
+
+  <footer style="border-top:1px solid #151d15;">
+    <div style="max-width:800px;margin:0 auto;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">
+      <span>© 2026 Aditya Bhavsar. All rights reserved.</span>
+      <a href="Portfolio.dc.html#how-i-think" style="color:#828d9c;">← All notes</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._init) return;
+    this._init = true;
+
+    let _actx;
+    const playSelect = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(720, t0);
+        osc.frequency.exponentialRampToValueAtTime(1080, t0 + 0.08);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.18);
+      } catch (e) {}
+    };
+    document.addEventListener('click', (e) => { if (e.target.closest('a, button, [data-dir]')) playSelect(); }, true);
+
+    const playHover = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.06);
+      } catch (e) {}
+    };
+    let _lastHover = null;
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target.closest('a, button, [data-dir]');
+      if (t && t !== _lastHover) { _lastHover = t; playHover(); }
+      else if (!t) { _lastHover = null; }
+    }, true);
+
+    const reveal = Array.from(document.querySelectorAll('[data-reveal]'));
+    const vh = window.innerHeight || 800;
+    const show = (el) => {
+      el.style.transitionDelay = (parseInt(el.getAttribute('data-reveal-delay') || '0', 10)) + 'ms';
+      el.style.opacity = '1'; el.style.transform = 'none';
+    };
+    reveal.forEach(el => {
+      el.style.transition = 'opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)';
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95) { show(el); el._r = true; }
+      else { el.style.opacity = '0'; el.style.transform = 'perspective(800px) rotateX(10deg) translateY(22px)'; }
+    });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    reveal.forEach(el => { if (!el._r) io.observe(el); });
+    setTimeout(() => reveal.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 1200);
+    const revealSweep = () => {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (getComputedStyle(el).opacity === '0' && el.getBoundingClientRect().top < vh * 1.15) show(el);
+      });
+    };
+    window.addEventListener('scroll', revealSweep, { passive: true });
+    window.addEventListener('resize', revealSweep);
+    setTimeout(revealSweep, 2500);
+    setTimeout(revealSweep, 6000);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

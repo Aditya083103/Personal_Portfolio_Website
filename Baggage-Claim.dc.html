@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Baggage AI Claims: Multi-Agent LangGraph Pipeline | Aditya Bhavsar</title>
+<meta name="description" content="A 5-agent LangGraph pipeline for automated airline baggage damage claims, with CV damage detection, OCR, fraud detection, and human-in-the-loop review.">
+<!-- TODO: set real domain once deployed, e.g. <link rel="canonical" href="https://yourdomain.com/pages/baggage-claim.html"> -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Baggage AI Claims: Multi-Agent LangGraph Pipeline | Aditya Bhavsar">
+<meta property="og:description" content="A 5-agent LangGraph pipeline for automated airline baggage damage claims, with CV damage detection, OCR, fraud detection, and human-in-the-loop review.">
+<meta property="og:image" content="assets/images/og/og-baggage-claim.png">
+<!-- TODO: set real domain once deployed, e.g. <meta property="og:url" content="https://yourdomain.com/pages/baggage-claim.html"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Baggage AI Claims: Multi-Agent LangGraph Pipeline | Aditya Bhavsar">
+<meta name="twitter:description" content="A 5-agent LangGraph pipeline for automated airline baggage damage claims, with CV damage detection, OCR, fraud detection, and human-in-the-loop review.">
+<meta name="twitter:image" content="assets/images/og/og-baggage-claim.png">
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<!-- Analytics: Plausible (privacy-friendly, cookieless, no consent banner needed).
+     1. Sign up at https://plausible.io and add this site.
+     2. Replace "yourdomain.com" below with your real domain.
+     3. Uncomment the script tag. -->
+<!-- <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e0b; color: #e7ebf0; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background:
+    radial-gradient(55% 45% at 8% 5%, rgba(53,184,119,0.11), transparent 60%),
+    radial-gradient(46% 42% at 94% 16%, rgba(163,204,74,0.07), transparent 62%),
+    radial-gradient(60% 55% at 50% 104%, rgba(31,138,85,0.10), transparent 60%); }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
+  a { color: #35b877; text-decoration: none; }
+  a:hover { color: #5fd6c8; }
+  ::selection { background: rgba(53,184,119,0.28); }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid #57d295; outline-offset:2px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){ *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; } }
+  @keyframes agentChase { 0%{border-color:#2c3a29;box-shadow:none;} 8%{border-color:#35b877;box-shadow:0 0 22px -3px rgba(53,184,119,0.55);} 22%{border-color:#2c3a29;box-shadow:none;} 100%{border-color:#2c3a29;box-shadow:none;} }
+  @keyframes agentChaseAlt { 0%{border-color:rgba(53,184,119,0.35);box-shadow:none;} 8%{border-color:#35b877;box-shadow:0 0 22px -3px rgba(53,184,119,0.55);} 22%{border-color:rgba(53,184,119,0.35);box-shadow:none;} 100%{border-color:rgba(53,184,119,0.35);box-shadow:none;} }
+  .agent-chase { animation:agentChase 5s ease-in-out infinite; }
+  .agent-chase-alt { animation:agentChaseAlt 5s ease-in-out infinite; }
+
+  /* ---- responsive ---- */
+  @media (max-width:520px){ .r-lanes{ grid-template-columns:1fr !important; } }
+</style>
+</helmet>
+
+<div style="position:relative;z-index:1;min-height:100vh;">
+
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;backdrop-filter:blur(14px);background:rgba(10,14,11,0.72);border-bottom:1px solid #182016;">
+    <div style="max-width:1000px;margin:0 auto;height:100%;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="Portfolio.dc.html" style="display:flex;align-items:center;gap:10px;color:#e7ebf0;">
+        <span style="width:22px;height:22px;border-radius:6px;background:#35b877;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px;color:#05100e;transition:transform .3s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:perspective(200px) rotateY(25deg) rotateX(-12deg) scale(1.08)">A</span>
+        <span style="font-weight:600;font-size:15px;letter-spacing:-0.01em;">Aditya Bhavsar</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="Portfolio.dc.html#projects" style="display:inline-flex;align-items:center;gap:8px;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;" style-hover="color:#e7ebf0">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+          All projects
+        </a>
+        <a href="assets/docs/Resume_Aditya_Bhavsar.pdf" download style="display:inline-flex;align-items:center;gap:8px;background:#35b877;color:#05100e;font-weight:600;font-size:13px;padding:9px 16px;border-radius:8px;transition:background .2s;" style-hover="background:#57d295">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#05100e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;overflow:hidden;border-bottom:1px solid #151d15;">
+    <div data-depth="10" style="position:absolute;inset:0;background:radial-gradient(54% 60% at 22% 0%, rgba(53,184,119,0.14), transparent 68%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1000px;margin:0 auto;padding:128px 32px 56px;">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#828d9c;">
+        <a href="Portfolio.dc.html#projects" style="color:#828d9c;">projects</a> <span style="color:#3c463a;">/</span> <span style="color:#9ba6b4;">baggage-ai-claims</span>
+      </div>
+      <div data-reveal style="margin-top:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8b95a3;border:1px solid #47683d;padding:3px 10px;border-radius:999px;white-space:nowrap;">Airline client · Delivered</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">Multi-agent claims assistant · v1.0</span>
+      </div>
+      <h1 data-reveal style="margin:16px 0 0;font-size:clamp(30px,7vw,44px);line-height:1.08;letter-spacing:-0.03em;font-weight:700;color:#f4f6fa;max-width:20ch;">Baggage AI Claims</h1>
+      <p data-reveal style="margin:18px 0 0;font-size:19px;color:#c3ccd8;line-height:1.5;max-width:66ch;">An AI assistant that lets air passengers file baggage-damage claims through a <span style="color:#f4f6fa;font-weight:600;">chat experience in under two minutes</span>. Scan a QR code at the carousel, upload a photo of the damage and bag tag, and get an instant outcome: an auto-approved compensation voucher, or a reference number for staff review. Powered by a <span style="color:#f4f6fa;font-weight:600;">five-agent LangGraph pipeline</span>.</p>
+      <div data-reveal style="margin-top:26px;display:flex;flex-wrap:wrap;gap:7px;font-family:'JetBrains Mono',monospace;font-size:12px;">
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">Multi-agent</span>
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">Computer Vision</span>
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">OCR</span>
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">Fraud detection</span>
+        <span style="color:#9ba6b4;border:1px solid #47683d;padding:5px 11px;border-radius:7px;white-space:nowrap;">Human-in-the-loop</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- METRICS -->
+  <section style="max-width:1000px;margin:0 auto;padding:48px 32px 0;">
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+      <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s;" style-hover="transform:translateY(-4px);border-color:#35b877;box-shadow:0 20px 40px -24px rgba(53,184,119,0.35)"><div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:600;color:#f4f6fa;letter-spacing:-0.02em;"><span style="color:#35b877;font-size:22px;">&lt;</span>2<span style="color:#35b877;font-size:22px;">min</span></div><div style="margin-top:5px;font-size:13px;color:#8b95a3;">Claim, end to end</div></div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s;" style-hover="transform:translateY(-4px);border-color:#35b877;box-shadow:0 20px 40px -24px rgba(53,184,119,0.35)"><div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:600;color:#f4f6fa;letter-spacing:-0.02em;">5</div><div style="margin-top:5px;font-size:13px;color:#8b95a3;">LangGraph agents</div></div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s;" style-hover="transform:translateY(-4px);border-color:#35b877;box-shadow:0 20px 40px -24px rgba(53,184,119,0.35)"><div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:600;color:#f4f6fa;letter-spacing:-0.02em;">2</div><div style="margin-top:5px;font-size:13px;color:#8b95a3;">Routing lanes: auto / staff</div></div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s;" style-hover="transform:translateY(-4px);border-color:#35b877;box-shadow:0 20px 40px -24px rgba(53,184,119,0.35)"><div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:600;color:#f4f6fa;letter-spacing:-0.02em;">0</div><div style="margin-top:5px;font-size:13px;color:#8b95a3;">Test failures at release</div></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section style="max-width:1000px;margin:0 auto;padding:64px 32px 0;">
+    <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+      <span style="color:#35b877;">01</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Overview</span>
+    </div>
+    <h2 data-reveal style="margin:18px 0 0;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">The problem, and the approach</h2>
+    <div data-reveal style="margin-top:20px;display:flex;flex-direction:column;gap:16px;font-size:16px;color:#a7b1bd;line-height:1.68;max-width:80ch;">
+      <p style="margin:0;">Damaged-baggage claims at airports are slow: passengers queue at a counter, fill out forms, and wait days for a resolution. It's a poor last impression, and it burns staff time on claims that are often low-value and could be settled automatically.</p>
+      <p style="margin:0;">This solution proved an agent pipeline could triage claims in real time, <span style="color:#e7ebf0;">auto-approving simple, low-risk cases</span> and routing only genuinely ambiguous, high-value, or suspicious ones to a human. It was scoped and delivered to the airline client as a <span style="color:#e7ebf0;">focused engagement</span>, with every AI capability behind a swappable interface so the stack can be upgraded without touching business logic.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="max-width:1000px;margin:0 auto;padding:64px 32px 0;">
+    <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+      <span style="color:#35b877;">02</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">How it works</span>
+    </div>
+    <h2 data-reveal style="margin:18px 0 24px;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">The five-agent pipeline</h2>
+    <div data-reveal style="border:1px solid #436a3d;border-radius:18px;background:linear-gradient(180deg,#0e140d,#0a0f0b);padding:28px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
+        <div class="agent-chase" style="border:1px solid #486941;border-radius:11px;background:#101810;padding:16px;text-align:center;animation-delay:0s;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#35b877;">A1</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cdd6e0;margin-top:6px;">Conversation</div>
+          <div style="font-size:11px;color:#828d9c;margin-top:3px;">Guides the passenger</div>
+        </div>
+        <div class="agent-chase" style="border:1px solid #486941;border-radius:11px;background:#101810;padding:16px;text-align:center;animation-delay:.6s;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#35b877;">A2</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cdd6e0;margin-top:6px;">Vision</div>
+          <div style="font-size:11px;color:#828d9c;margin-top:3px;">Damage + luxury detection</div>
+        </div>
+        <div class="agent-chase" style="border:1px solid #486941;border-radius:11px;background:#101810;padding:16px;text-align:center;animation-delay:1.2s;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#35b877;">A3</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cdd6e0;margin-top:6px;">OCR</div>
+          <div style="font-size:11px;color:#828d9c;margin-top:3px;">Reads the bag tag</div>
+        </div>
+        <div class="agent-chase-alt" style="border:1px solid rgba(53,184,119,0.35);border-radius:11px;background:rgba(53,184,119,0.05);padding:16px;text-align:center;animation-delay:1.8s;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#35b877;">A4</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#dce6f5;margin-top:6px;">Decision</div>
+          <div style="font-size:11px;color:#a9c2ae;margin-top:3px;">Fraud checks + routing</div>
+        </div>
+        <div class="agent-chase" style="border:1px solid #486941;border-radius:11px;background:#101810;padding:16px;text-align:center;animation-delay:2.4s;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#35b877;">A5</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cdd6e0;margin-top:6px;">Notification</div>
+          <div style="font-size:11px;color:#828d9c;margin-top:3px;">Delivers the outcome</div>
+        </div>
+      </div>
+
+      <!-- two-lane split -->
+      <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="r-lanes">
+        <div data-tilt style="border:1px solid rgba(63,185,80,0.4);border-radius:12px;background:rgba(63,185,80,0.06);padding:18px;transition:transform .25s,box-shadow .25s;" style-hover="transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(63,185,80,0.4)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fecc0;letter-spacing:0.04em;">LANE 1: AUTO-APPROVE</div>
+          <p style="margin:8px 0 0;font-size:13px;color:#8b95a3;line-height:1.55;">Low-value, non-luxury, low fraud-score claims resolve instantly with a compensation voucher, no human touch needed.</p>
+        </div>
+        <div data-tilt style="border:1px solid rgba(53,184,119,0.4);border-radius:12px;background:rgba(53,184,119,0.05);padding:18px;transition:transform .25s,box-shadow .25s;" style-hover="transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(53,184,119,0.4)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#7ee0aa;letter-spacing:0.04em;">LANE 2: STAFF REVIEW</div>
+          <p style="margin:8px 0 0;font-size:13px;color:#8b95a3;line-height:1.55;">High-value, luxury-brand, or flagged claims land on a staff dashboard where a reviewer can approve, reject, or modify.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRIBUTIONS -->
+  <section style="max-width:1000px;margin:0 auto;padding:64px 32px 0;">
+    <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+      <span style="color:#35b877;">03</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Engineering</span>
+    </div>
+    <h2 data-reveal style="margin:18px 0 24px;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">Engineering highlights</h2>
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;">
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Single-responsibility agents</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Five LangGraph agents (conversation, vision, OCR, decision, notification) each own one job and hand a shared claim state forward. Clean, testable, and easy to reason about under real-image edge cases.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Vision + OCR evidence</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Damage classification and luxury-bag detection from photos, plus bag-tag OCR for flight number, PNR, and bag ID, with confidence-gated retries that ask for a clearer photo instead of guessing.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Fraud detection &amp; routing</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Perceptual image hashing (pHash) catches duplicate-photo submissions, and claim-frequency checks flag repeat filers. A computed fraud score drives the auto vs. staff routing decision, with all thresholds configurable.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Provider-agnostic architecture</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">LLM, vision, and OCR each sit behind an abstract interface, so swapping a provider is a single environment-variable change. Every call is wrapped so the pipeline degrades gracefully rather than crashing.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Human-in-the-loop dashboard</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">A staff review dashboard surfaces the escalated claims with full evidence (photo, extracted tag data, and fraud signals), so a reviewer can act on a complete picture in seconds.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Shipped clean in three weeks</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Delivered on a disciplined git workflow with a full automated test suite (unit, integration, and smoke tests), passing with zero failures at the v1.0 release gate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section style="max-width:1000px;margin:0 auto;padding:64px 32px 0;">
+    <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+      <span style="color:#35b877;">04</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Impact</span>
+    </div>
+    <h2 data-reveal style="margin:18px 0 24px;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">What it changed at the counter</h2>
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;">
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">A counter queue replaced with a QR code</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Passengers go from waiting in line and filling paper forms to a two-minute self-serve claim, with straightforward cases auto-approved on the spot instead of days later.</p>
+      </div>
+      <div data-tilt style="border:1px solid #436a3d;border-radius:14px;background:linear-gradient(180deg,#101810,#0c120d);padding:22px 24px;">
+        <h3 style="margin:0;font-size:16px;font-weight:600;color:#e7ebf0;">Staff time freed for the cases that need it</h3>
+        <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.6;">Fraud checks and low-confidence claims route to a human-in-the-loop lane automatically, so staff only review what actually needs judgment. The rest resolves itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT / FOOTER -->
+  <section style="max-width:1000px;margin:0 auto;padding:64px 32px 40px;">
+    <a href="Voice-Chatbot.dc.html" data-reveal data-tilt style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid #436a3d;border-radius:16px;background:linear-gradient(180deg,#101810,#0c120d);padding:24px 28px;text-decoration:none;transition:border-color .2s,background .2s;" style-hover="border-color:#35b877;background:linear-gradient(180deg,#111811,#0c120d)">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#828d9c;">Next project</div>
+        <div style="margin-top:6px;font-size:18px;font-weight:600;color:#f4f6fa;">Voice Chatbot Framework</div>
+      </div>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <footer style="border-top:1px solid #151d15;">
+    <div style="max-width:1000px;margin:0 auto;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">
+      <span>© 2026 Aditya Bhavsar. All rights reserved.</span>
+      <a href="Portfolio.dc.html#projects" style="color:#828d9c;">← All projects</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._init) return;
+    this._init = true;
+
+    let _actx;
+    const playSelect = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(720, t0);
+        osc.frequency.exponentialRampToValueAtTime(1080, t0 + 0.08);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.18);
+      } catch (e) {}
+    };
+    document.addEventListener('click', (e) => { if (e.target.closest('a, button, [data-dir]')) playSelect(); }, true);
+
+    // Subtle hover tick
+    const playHover = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.06);
+      } catch (e) {}
+    };
+    let _lastHover = null;
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target.closest('a, button, [data-dir]');
+      if (t && t !== _lastHover) { _lastHover = t; playHover(); }
+      else if (!t) { _lastHover = null; }
+    }, true);
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mouseenter', () => { card.style.transformStyle = 'preserve-3d'; card.style.transition = 'transform .05s linear'; });
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-4px) translateZ(6px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+          card.style.transform = 'none';
+          card.style.transformStyle = '';
+        });
+      });
+      const depthLayers = Array.from(document.querySelectorAll('[data-depth]'));
+      if (depthLayers.length) {
+        depthLayers.forEach(l => { l.style.transition = 'transform .3s ease-out'; });
+        window.addEventListener('mousemove', (e) => {
+          const px = e.clientX / window.innerWidth - 0.5;
+          const py = e.clientY / window.innerHeight - 0.5;
+          depthLayers.forEach(l => {
+            const d = parseFloat(l.getAttribute('data-depth')) || 0;
+            l.style.transform = `translate3d(${(px * d).toFixed(1)}px, ${(py * d).toFixed(1)}px, 0)`;
+          });
+        });
+      }
+    }
+
+    const reveal = Array.from(document.querySelectorAll('[data-reveal]'));
+    const vh = window.innerHeight || 800;
+    const show = (el) => {
+      el.style.transitionDelay = (parseInt(el.getAttribute('data-reveal-delay') || '0', 10)) + 'ms';
+      el.style.opacity = '1'; el.style.transform = 'none';
+    };
+    reveal.forEach(el => {
+      el.style.transition = 'opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)';
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95) { show(el); el._r = true; }
+      else { el.style.opacity = '0'; el.style.transform = 'perspective(800px) rotateX(10deg) translateY(22px)'; }
+    });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    reveal.forEach(el => { if (!el._r) io.observe(el); });
+    setTimeout(() => reveal.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 1200);
+    // Self-healing backstop: the observer/timeout above can race on some
+    // browsers and leave off-screen sections permanently invisible, so
+    // re-check on scroll/resize and a couple of later timers too.
+    const revealSweep = () => {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (getComputedStyle(el).opacity === '0' && el.getBoundingClientRect().top < vh * 1.15) show(el);
+      });
+    };
+    window.addEventListener('scroll', revealSweep, { passive: true });
+    window.addEventListener('resize', revealSweep);
+    setTimeout(revealSweep, 2500);
+    setTimeout(revealSweep, 6000);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Aditya Bhavsar | GenAI & Agentic AI Engineer</title>
+<meta name="description" content="Associate Software Engineer building production multi-agent & RAG systems with LangGraph, LangChain, and FastAPI. Case studies, publications, and projects.">
+<!-- TODO: set real domain once deployed, e.g. <link rel="canonical" href="https://yourdomain.com/"> -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aditya Bhavsar | GenAI & Agentic AI Engineer">
+<meta property="og:description" content="Associate Software Engineer building production multi-agent & RAG systems with LangGraph, LangChain, and FastAPI. Case studies, publications, and projects.">
+<meta property="og:image" content="assets/images/og/og-home.png">
+<!-- TODO: set real domain once deployed, e.g. <meta property="og:url" content="https://yourdomain.com/"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aditya Bhavsar | GenAI & Agentic AI Engineer">
+<meta name="twitter:description" content="Associate Software Engineer building production multi-agent & RAG systems with LangGraph, LangChain, and FastAPI. Case studies, publications, and projects.">
+<meta name="twitter:image" content="assets/images/og/og-home.png">
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<!-- Analytics: Plausible (privacy-friendly, cookieless, no consent banner needed).
+     1. Sign up at https://plausible.io and add this site.
+     2. Replace "yourdomain.com" below with your real domain.
+     3. Uncomment the script tag. -->
+<!-- <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e0b; color: #e7ebf0; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background:
+    radial-gradient(55% 45% at 8% 5%, rgba(53,184,119,0.13), transparent 60%),
+    radial-gradient(46% 42% at 94% 16%, rgba(163,204,74,0.08), transparent 62%),
+    radial-gradient(60% 55% at 50% 104%, rgba(31,138,85,0.11), transparent 60%),
+    radial-gradient(40% 40% at 78% 62%, rgba(53,184,119,0.06), transparent 60%); }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
+  a { color: #35b877; text-decoration: none; }
+  a:hover { color: #7ee0aa; }
+  ::selection { background: rgba(53,184,119,0.28); }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid #35b877; outline-offset:2px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){ *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; } }
+  button { font-family: inherit; }
+  @keyframes pulse-ring { 0% { transform: scale(0.7); opacity: 0.75; } 70% { transform: scale(2.6); opacity: 0; } 100% { opacity: 0; } }
+  @keyframes auroraDrift { 0%{transform:translate3d(-3%,-2%,0) scale(1);} 50%{transform:translate3d(4%,3%,0) scale(1.14);} 100%{transform:translate3d(-3%,-2%,0) scale(1);} }
+  @keyframes gridDrift { from{background-position:0 0;} to{background-position:64px 64px;} }
+  @keyframes nameShimmer { from{background-position:0% 50%;} to{background-position:220% 50%;} }
+  @keyframes moteDrift { 0%,100%{transform:translate(0,0);opacity:.16;} 50%{transform:translate(12px,-26px);opacity:.7;} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+  @keyframes flagshipGlow { 0%,100%{box-shadow:0 0 0 1px #293b25, 0 0 0 rgba(53,184,119,0);} 50%{box-shadow:0 0 0 1px rgba(53,184,119,0.5), 0 24px 60px -28px rgba(53,184,119,0.45);} }
+  @keyframes floatSlow { 0%,100%{transform:perspective(1400px) rotateY(-5deg) rotateX(2deg) translateY(0);} 50%{transform:perspective(1400px) rotateY(-5deg) rotateX(2deg) translateY(-10px);} }
+  @keyframes leafDrift3D { 0%{transform:translate3d(0,0,0) rotate3d(.4,1,.2,0deg);} 25%{transform:translate3d(10px,-18px,26px) rotate3d(.4,1,.2,90deg);} 50%{transform:translate3d(-6px,-30px,8px) rotate3d(.4,1,.2,180deg);} 75%{transform:translate3d(-14px,-10px,-18px) rotate3d(.4,1,.2,270deg);} 100%{transform:translate3d(0,0,0) rotate3d(.4,1,.2,360deg);} }
+  .flagship-card { animation: flagshipGlow 4.5s ease-in-out infinite; will-change: transform; transform-style: preserve-3d; }
+  .tilt-card { will-change: transform; transform-style: preserve-3d; }
+  .float-panel { animation: floatSlow 6s ease-in-out infinite; transform-style: preserve-3d; will-change: transform; }
+
+  /* ---- responsive ---- */
+  @media (max-width:900px){ .r-nav-links a[data-nav]{ display:none !important; } .r-nav-links > span[aria-hidden]{ display:none !important; } .r-nav-toggle{ display:inline-flex !important; } }
+  @media (min-width:901px){ .r-mobile-menu{ display:none !important; } }
+  @media (max-width:820px){
+    .r-hero{ grid-template-columns:1fr !important; gap:40px !important; padding-top:104px !important; padding-bottom:24px !important; }
+    .r-about{ grid-template-columns:1fr !important; gap:36px !important; }
+    .r-contact{ grid-template-columns:1fr !important; }
+    .r-more{ grid-template-columns:1fr !important; }
+    .r-skills{ grid-template-columns:1fr !important; }
+  }
+  @media (max-width:680px){ .secbox{ padding:34px 24px !important; border-radius:18px !important; } }
+  @media (max-width:760px){ .r-deliver{ grid-template-columns:1fr !important; } }
+  @media (max-width:600px){ .r-certs{ grid-template-columns:1fr 1fr !important; } .r-socials{ grid-template-columns:1fr 1fr !important; } }
+  @media (max-width:400px){ .r-certs{ grid-template-columns:1fr !important; } .r-socials{ grid-template-columns:1fr !important; } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;z-index:1;min-height:100vh;overflow-x:hidden;">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;backdrop-filter:blur(14px);background:rgba(10,12,16,0.72);border-bottom:1px solid #182016;">
+    <div style="max-width:1160px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;color:#e7ebf0;flex-shrink:0;">
+        <span style="flex-shrink:0;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#35b877,#178f83);display:inline-flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:#05100e;transition:transform .3s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:perspective(200px) rotateY(25deg) rotateX(-12deg) scale(1.08)">A</span>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:-0.01em;white-space:nowrap;">Aditya Bhavsar</span>
+      </a>
+      <div class="r-nav-links" style="display:flex;align-items:center;gap:4px;">
+        <a data-nav="about" href="#about" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">About<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="experience" href="#experience" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Experience<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="publications" href="#publications" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Publications<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="projects" href="#projects" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Projects<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="skills" href="#skills" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Skills<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="education" href="#education" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Education<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <a data-nav="contact" href="#contact" style="position:relative;color:#9ba6b4;font-size:14px;padding:8px 12px;transition:color .2s;">Contact<span data-navbar style="position:absolute;left:12px;right:12px;bottom:2px;height:1px;background:#35b877;opacity:0;transition:opacity .2s;"></span></a>
+        <span aria-hidden="true" style="width:1px;height:22px;background:#334a2d;margin:0 4px 0 10px;align-self:center;"></span>
+        <a href="assets/docs/Resume_Aditya_Bhavsar.pdf" download style="margin-left:10px;display:inline-flex;align-items:center;gap:8px;background:#35b877;color:#05100e;font-weight:600;font-size:13px;padding:9px 16px;border-radius:9px;transition:background .2s;" style-hover="background:#57d295">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#05100e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Resume
+        </a>
+        <button id="nav-toggle" class="r-nav-toggle" aria-label="Open menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;width:42px;height:42px;margin-left:6px;background:transparent;border:1px solid #406a36;border-radius:10px;color:#e7ebf0;cursor:pointer;">
+          <svg id="nav-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="r-mobile-menu" style="display:none;max-height:0;overflow:hidden;transition:max-height .3s ease;background:rgba(10,12,16,0.97);backdrop-filter:blur(14px);border-bottom:1px solid #182016;">
+      <div style="display:flex;flex-direction:column;padding:8px 20px 16px;gap:2px;">
+        <a data-mnav href="#about" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">About</a>
+        <a data-mnav href="#experience" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">Experience</a>
+        <a data-mnav href="#publications" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">Publications</a>
+        <a data-mnav href="#projects" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">Projects</a>
+        <a data-mnav href="#skills" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">Skills</a>
+        <a data-mnav href="#education" style="color:#c3ccd8;font-size:16px;padding:13px 8px;border-bottom:1px solid #182016;">Education</a>
+        <a data-mnav href="#contact" style="color:#c3ccd8;font-size:16px;padding:13px 8px;">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="scroll-progress" aria-hidden="true" style="position:fixed;top:64px;left:0;height:2px;width:0;z-index:49;background:linear-gradient(90deg,#35b877,#a3d94a);box-shadow:0 0 12px rgba(53,184,119,0.6);transition:width .12s linear;"></div>
+
+  <!-- ===== HERO ===== -->
+  <header id="top" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:-25%;background:radial-gradient(38% 46% at 20% 8%, rgba(53,184,119,0.20), transparent 66%),radial-gradient(32% 40% at 82% 4%, rgba(224,149,74,0.13), transparent 70%);animation:auroraDrift 20s ease-in-out infinite;pointer-events:none;opacity:{{ auroraOpacity }};"></div>
+    <div data-depth="10" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);background-size:64px 64px;animation:gridDrift 28s linear infinite;-webkit-mask-image:radial-gradient(70% 60% at 30% 20%, #000 0%, transparent 80%);mask-image:radial-gradient(70% 60% at 30% 20%, #000 0%, transparent 80%);pointer-events:none;"></div>
+    <div aria-hidden="true" data-depth="16" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:{{ motesOpacity }};filter:brightness({{ motesBrightness }});"
+      <span style="position:absolute;left:12%;top:28%;width:6px;height:6px;border-radius:50%;background:#8fecc0;box-shadow:0 0 10px 2px rgba(87,210,149,0.55);animation:moteDrift 7s ease-in-out infinite;"></span>
+      <span style="position:absolute;left:22%;top:62%;width:4px;height:4px;border-radius:50%;background:#8fecc0;box-shadow:0 0 8px 2px rgba(87,210,149,0.5);animation:moteDrift 9s ease-in-out infinite;animation-delay:1.5s;"></span>
+      <span style="position:absolute;left:34%;top:18%;width:5px;height:5px;border-radius:50%;background:#a3d94a;box-shadow:0 0 9px 2px rgba(163,217,74,0.45);animation:moteDrift 8s ease-in-out infinite;animation-delay:.8s;"></span>
+      <span style="position:absolute;left:47%;top:48%;width:3px;height:3px;border-radius:50%;background:#8fecc0;box-shadow:0 0 7px 2px rgba(87,210,149,0.5);animation:moteDrift 11s ease-in-out infinite;animation-delay:2s;"></span>
+      <span style="position:absolute;left:58%;top:30%;width:6px;height:6px;border-radius:50%;background:#8fecc0;box-shadow:0 0 10px 2px rgba(87,210,149,0.5);animation:moteDrift 7.5s ease-in-out infinite;animation-delay:.4s;"></span>
+      <span style="position:absolute;left:68%;top:66%;width:4px;height:4px;border-radius:50%;background:#a3d94a;box-shadow:0 0 8px 2px rgba(163,217,74,0.4);animation:moteDrift 10s ease-in-out infinite;animation-delay:1.2s;"></span>
+      <span style="position:absolute;left:79%;top:22%;width:5px;height:5px;border-radius:50%;background:#8fecc0;box-shadow:0 0 9px 2px rgba(87,210,149,0.5);animation:moteDrift 8.5s ease-in-out infinite;animation-delay:2.4s;"></span>
+      <span style="position:absolute;left:88%;top:52%;width:4px;height:4px;border-radius:50%;background:#8fecc0;box-shadow:0 0 8px 2px rgba(87,210,149,0.5);animation:moteDrift 9.5s ease-in-out infinite;animation-delay:.6s;"></span>
+      <span style="position:absolute;left:16%;top:46%;width:3px;height:3px;border-radius:50%;background:#a3d94a;box-shadow:0 0 7px 2px rgba(163,217,74,0.4);animation:moteDrift 12s ease-in-out infinite;animation-delay:3s;"></span>
+    </div>
+    <div aria-hidden="true" data-depth="26" style="position:absolute;inset:0;overflow:hidden;perspective:900px;pointer-events:none;display:{{ leavesDisplay }};"
+      <span style="position:absolute;left:9%;top:14%;width:22px;height:22px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#5fd39a,#1f8a55);opacity:.5;box-shadow:0 8px 18px -6px rgba(31,138,85,0.5);animation:leafDrift3D 14s ease-in-out infinite;"></span>
+      <span style="position:absolute;left:24%;top:72%;width:16px;height:16px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#a3d94a,#5fd39a);opacity:.4;box-shadow:0 6px 14px -6px rgba(163,217,74,0.45);animation:leafDrift3D 18s ease-in-out infinite;animation-delay:2.4s;"></span>
+      <span style="position:absolute;left:41%;top:10%;width:28px;height:28px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#57d295,#178f83);opacity:.45;box-shadow:0 10px 20px -8px rgba(23,143,131,0.4);animation:leafDrift3D 16s ease-in-out infinite;animation-delay:1.1s;"></span>
+      <span style="position:absolute;left:63%;top:58%;width:18px;height:18px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#5fd39a,#1f8a55);opacity:.4;box-shadow:0 7px 15px -6px rgba(31,138,85,0.45);animation:leafDrift3D 20s ease-in-out infinite;animation-delay:3.6s;"></span>
+      <span style="position:absolute;left:76%;top:20%;width:24px;height:24px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#a3d94a,#57d295);opacity:.5;box-shadow:0 9px 18px -7px rgba(163,217,74,0.4);animation:leafDrift3D 15s ease-in-out infinite;animation-delay:.6s;"></span>
+      <span style="position:absolute;left:88%;top:66%;width:14px;height:14px;border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#57d295,#1f8a55);opacity:.35;box-shadow:0 6px 12px -5px rgba(31,138,85,0.4);animation:leafDrift3D 22s ease-in-out infinite;animation-delay:4.2s;"></span>
+    </div>
+    <div class="r-hero" style="position:relative;max-width:1160px;margin:0 auto;padding:132px 28px 40px;display:grid;grid-template-columns:1.08fr 0.92fr;gap:56px;align-items:center;">
+      <div data-reveal>
+        <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#35b877;padding:6px 14px;border:1px solid rgba(53,184,119,0.28);border-radius:999px;background:rgba(53,184,119,0.06);white-space:nowrap;max-width:100%;">
+          <span style="flex-shrink:0;position:relative;display:inline-flex;width:6px;height:6px;"><span style="position:absolute;inset:0;border-radius:50%;background:#35b877;animation:pulse-ring 2.4s ease-out infinite;"></span><span style="position:relative;width:6px;height:6px;border-radius:50%;background:#35b877;"></span></span>
+          GenAI · Agentic AI Engineer
+        </div>
+        <h1 style="margin:18px 0 0;font-size:clamp(46px,11vw,68px);line-height:1.0;letter-spacing:-0.04em;font-weight:700;background:linear-gradient(115deg,#f4f6fa 16%,#8fecc0 40%,#57d295 54%,#a3d94a 68%,#8fecc0 82%,#f4f6fa 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nameShimmer 7s linear infinite;">Aditya<br>Bhavsar</h1>
+        <p style="margin:20px 0 0;font-size:21px;line-height:1.45;color:#c3ccd8;max-width:34ch;">I build and ship <span style="color:#f4f6fa;font-weight:600;">production</span> multi-agent &amp; RAG systems using LangGraph, LangChain, and FastAPI.</p>
+        <p style="margin:14px 0 0;font-size:15.5px;color:#8b95a3;max-width:46ch;">Associate Software Engineer at Mphasis, backed by a Scopus-indexed deep-learning publication. Turning agent orchestration and retrieval into systems that run in production.</p>
+        <div style="margin-top:26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <a href="#projects" style="display:inline-flex;align-items:center;gap:9px;background:#35b877;color:#05100e;font-weight:600;font-size:14.5px;padding:12px 20px;border-radius:11px;box-shadow:0 12px 34px -12px rgba(53,184,119,0.7);transition:background .2s,box-shadow .2s;" style-hover="background:#57d295">
+            View flagship project
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#05100e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a href="#contact" style="display:inline-flex;align-items:center;gap:9px;color:#dbe2ea;font-weight:600;font-size:14.5px;padding:12px 20px;border:1px solid #406a36;border-radius:11px;transition:border-color .2s,background .2s;" style-hover="border-color:#35b877;background:rgba(53,184,119,0.06)">Get in touch</a>
+          <div style="display:flex;gap:8px;">
+            <a href="https://github.com/Aditya083103" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #406a36;border-radius:11px;color:#9ba6b4;transition:border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.34.85.01 1.7.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/aditya-bhavsar31" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #406a36;border-radius:11px;color:#9ba6b4;transition:border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#828d9c;letter-spacing:0.02em;">Mumbai, India &nbsp;·&nbsp; B.Tech Computer Engineering</div>
+      </div>
+
+      <!-- metrics -->
+      <div data-reveal data-reveal-delay="120" class="float-panel" style="border:1px solid #416a38;border-radius:18px;background:linear-gradient(180deg,#101810,#111c13);padding:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:6px;column-gap:10px;padding:13px 16px 12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#828d9c;white-space:nowrap;">// what I've built</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#3fb950;white-space:nowrap;"><span style="width:7px;height:7px;border-radius:50%;background:#3fb950;flex-shrink:0;"></span>shipping</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1px;background:#243523;border-radius:13px;overflow:hidden;">
+          <div style="background:#0e150f;padding:16px 18px;">
+            <div style="font-size:15px;font-weight:600;color:#eef2f8;letter-spacing:-0.01em;">File an airline baggage claim in <span style="color:#5fd39a;">under 2 minutes</span></div>
+            <div style="margin-top:6px;font-size:13px;color:#a7b1bd;line-height:1.5;">An AI assistant lets passengers file a damaged-bag claim from a photo, instead of queuing at a counter for days.</div>
+          </div>
+          <div style="background:#0e150f;padding:16px 18px;">
+            <div style="font-size:15px;font-weight:600;color:#eef2f8;letter-spacing:-0.01em;">One workplace assistant across <span style="color:#5fd39a;">3 departments</span></div>
+            <div style="margin-top:6px;font-size:13px;color:#a7b1bd;line-height:1.5;">Answers employees' everyday HR, IT, and company-policy questions in plain language, from a single chat.</div>
+          </div>
+          <div style="background:#0e150f;padding:16px 18px;">
+            <div style="font-size:15px;font-weight:600;color:#eef2f8;letter-spacing:-0.01em;"><span style="color:#5fd39a;">8 AI agents</span> that debate a stock, then decide</div>
+            <div style="margin-top:6px;font-size:13px;color:#a7b1bd;line-height:1.5;">Eight AI "analysts" research a company in parallel and argue it out like an investment committee, then write a Buy / Hold / Sell memo in under 90 seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== ABOUT (light box) ===== -->
+  <section id="about" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div class="r-about" style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:start;">
+          <div data-reveal style="display:flex;flex-direction:column;gap:22px;position:relative;">
+            <div aria-hidden="true" style="position:absolute;top:-26px;left:-26px;width:160px;height:160px;border-radius:0 60% 60% 60%;background:radial-gradient(circle,#5fd39a,#1f8a55 70%);filter:blur(40px);opacity:.35;z-index:0;pointer-events:none;"></div>
+            <image-slot id="headshot" data-tilt src="headshot.jpg" shape="rounded" radius="16" placeholder="Drop headshot" fit="cover" style="width:100%;height:440px;border:1px solid #7b9437;position:relative;z-index:1;box-shadow:0 30px 60px -30px rgba(31,138,85,0.45);"></image-slot>
+            <div style="border:1px solid #7b9337;border-radius:12px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#f3f4e6;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px;border-bottom:1px solid #7b923d;"><span style="color:#5e6552;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Role</span><span style="color:#2b3a2d;text-align:right;">Associate Software Engineer</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px;border-bottom:1px solid #7b923d;"><span style="color:#5e6552;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Focus</span><span style="color:#2b3a2d;text-align:right;">Agentic AI · RAG · LLM infrastructure</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px;border-bottom:1px solid #7b923d;"><span style="color:#5e6552;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Core stack</span><span style="color:#2b3a2d;text-align:right;">LangGraph · FastAPI · Python</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px;border-bottom:1px solid #7b923d;"><span style="color:#5e6552;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Education</span><span style="color:#2b3a2d;text-align:right;">B.Tech Computer Engineering · 9.05 CGPA</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px;"><span style="color:#5e6552;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Based</span><span style="color:#2b3a2d;text-align:right;">Mumbai, India · open to remote</span></div>
+            </div>
+          </div>
+          <div data-reveal data-reveal-delay="100">
+            <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+              <span style="color:#1f8a55;">01</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">About</span>
+            </div>
+            <h2 style="margin:20px 0 0;font-size:36px;letter-spacing:-0.03em;font-weight:600;color:#16231a;line-height:1.12;">Engineering fundamentals, pointed at generative AI.</h2>
+            <div style="margin-top:24px;display:flex;flex-direction:column;gap:18px;font-size:16px;color:#46554a;line-height:1.68;">
+              <p style="margin:0;">I started in core software engineering, with a Computer Engineering degree (9.05 CGPA) and real grounding in how software runs in production. From there I went deep on generative AI: LLM orchestration, RAG, and multi-agent design. Not demos, <span style="color:#1f7d50;font-weight:600;">systems that ship</span>.</p>
+              <p style="margin:0;">Today I build production agentic and RAG pipelines at Mphasis across multiple LLM providers and clouds, backed by a Scopus-indexed deep-learning publication. I'm after GenAI, LLM, and Agentic AI roles where shipping is the point.</p>
+              <p style="margin:0;color:#5d6757;font-style:italic;">When I'm not building agentic systems, I'm usually on a road trip or out on the pitch.</p>
+            </div>
+            <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;">
+              <a href="#projects" style="display:inline-flex;align-items:center;gap:8px;background:#1f8a55;color:#f4fffd;font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:10px;transition:background .2s;" style-hover="background:#1a7247">See the work<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f4fffd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+              <a href="assets/docs/Resume_Aditya_Bhavsar.pdf" download style="display:inline-flex;align-items:center;gap:8px;color:#38473a;font-weight:600;font-size:13.5px;padding:10px 16px;border:1px solid #7c9640;border-radius:10px;transition:border-color .2s;" style-hover="border-color:#1f8a55">Download résumé</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE (dark box) ===== -->
+  <section id="experience" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #3f6934;border-radius:24px;background:linear-gradient(180deg,#182517,#121e14);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 34px 70px -44px rgba(0,0,0,0.8);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#35b877;">02</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Experience</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 44px;font-size:34px;letter-spacing:-0.025em;font-weight:600;color:#f4f6fa;">Where I've shipped</h2>
+
+        <div data-reveal style="border:1px solid #416a38;border-radius:18px;background:#111c13;overflow:hidden;">
+          <div style="padding:28px 32px;border-bottom:1px solid #3e693c;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span style="width:40px;height:40px;border-radius:10px;background:#182016;border:1px solid #406a36;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;color:#35b877;">M</span>
+                <div>
+                  <h3 style="margin:0;font-size:20px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Associate Software Engineer</h3>
+                  <div style="font-size:14.5px;color:#8b95a3;margin-top:2px;">Mphasis &nbsp;·&nbsp; GenAI / Agentic AI</div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#8b95a3;">
+              <div style="color:#c3ccd8;">Sep 2025 - Present</div>
+              <div style="color:#828d9c;margin-top:3px;">Mumbai, India</div>
+            </div>
+          </div>
+
+          <div class="r-deliver" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#243523;border-bottom:1px solid #172013;">
+          <div style="padding:26px 28px;background:#111c13;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <h4 style="margin:0;font-size:16.5px;font-weight:600;color:#e7ebf0;font-family:'Space Grotesk',sans-serif;">Voice Chatbot Framework</h4>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#35b877;border:1px solid rgba(53,184,119,0.35);background:rgba(53,184,119,0.08);padding:3px 9px;border-radius:999px;white-space:nowrap;">Enterprise platform</span>
+            </div>
+            <p style="margin:12px 0 0;font-size:15.5px;color:#a7b1bd;line-height:1.62;max-width:74ch;">Engineered an enterprise multi-domain conversational AI platform that resolves employee <span style="color:#e7ebf0;">HR, IT, and policy queries through one assistant</span>. A LangGraph orchestrator routes each intent to specialized agents, backed by hybrid (vector + keyword) RAG with citation grounding, semantic response caching, and full production observability. Delivered to the client on Azure, with AWS support as ongoing work.</p>
+            <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;">
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">LangChain</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">FastAPI</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">Hybrid RAG</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">Observability</span>
+            </div>
+          </div>
+
+          <div style="padding:26px 28px;background:#111c13;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <h4 style="margin:0;font-size:16.5px;font-weight:600;color:#e7ebf0;font-family:'Space Grotesk',sans-serif;">AI-Powered Baggage Claim</h4>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#8b95a3;border:1px solid #406a36;padding:3px 9px;border-radius:999px;white-space:nowrap;">Airline client</span>
+            </div>
+            <p style="margin:12px 0 0;font-size:15.5px;color:#a7b1bd;line-height:1.62;max-width:74ch;">Built core components of a <span style="color:#e7ebf0;">five-agent LangGraph pipeline</span> that lets passengers file baggage-damage claims from a chat in under two minutes. Computer-vision damage detection, bag-tag OCR, and pHash-based fraud checks route each claim to instant auto-approval or human staff review. Delivered as a disciplined <span style="color:#e7ebf0;">three-week sprint</span>.</p>
+            <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;">
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">Multi-agent</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">CV / OCR</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">Fraud detection</span>
+              <span style="color:#9ba6b4;border:1px solid #406a36;padding:5px 11px;border-radius:7px;white-space:nowrap;">Human-in-the-loop</span>
+            </div>
+          </div>
+          </div>
+
+          <div style="padding:22px 32px;display:flex;align-items:center;gap:14px;background:rgba(53,184,119,0.05);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <p style="margin:0;font-size:14.5px;color:#a7b1bd;">Recognized with an <span style="color:#e7ebf0;">Accolade Award nomination</span> and a Commendable performance review for leading the Baggage Claim and Voice Chatbot deliverables.</p>
+          </div>
+        </div>
+
+        <div data-reveal data-reveal-delay="80" style="margin-top:16px;border:1px solid #426a42;border-radius:14px;background:#111c13;padding:24px 28px;">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:34px;height:34px;border-radius:9px;background:#111811;border:1px solid #486743;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:#7d8b9c;">M</span>
+              <div>
+                <h3 style="margin:0;font-size:16px;font-weight:600;color:#c8d2de;letter-spacing:-0.01em;">Software Engineer Intern</h3>
+                <div style="font-size:13.5px;color:#77828f;margin-top:2px;">Mphasis &nbsp;·&nbsp; Internship · On-site</div>
+              </div>
+            </div>
+            <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;color:#77828f;">
+              <div style="color:#9ba6b4;">Mar 2025 - Jun 2025</div>
+              <div style="color:#828d9c;margin-top:3px;">4 months · Mumbai, India</div>
+            </div>
+          </div>
+          <p style="margin:16px 0 0;font-size:14px;color:#8b95a3;line-height:1.55;">The engineering foundation that led into the GenAI work: production Java/Spring backend and frontend delivery.</p>
+          <ul style="margin:12px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#8b95a3;line-height:1.5;">
+            <li>Built a microservices-based RM Onboarding System with <span style="color:#b7c1cd;">Spring Boot, Java 21, MySQL</span>, with secure login flows via JWT, Spring Security, and OTP.</li>
+            <li>Expanded an <span style="color:#b7c1cd;">Angular</span> SPA dashboard with real-time market-trend visualizations (AlphaVantage API) and client portfolio views.</li>
+            <li>Integrated third-party APIs via <span style="color:#b7c1cd;">OpenFeign (Spring Cloud)</span> and automated email notification workflows.</li>
+            <li>Wrote unit tests with <span style="color:#b7c1cd;">JUnit</span> and performed API testing via Postman.</li>
+          </ul>
+          <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+            <span style="color:#8b95a3;border:1px solid #486743;padding:4px 10px;border-radius:7px;white-space:nowrap;">Spring Boot</span>
+            <span style="color:#8b95a3;border:1px solid #486743;padding:4px 10px;border-radius:7px;white-space:nowrap;">Java 21</span>
+            <span style="color:#8b95a3;border:1px solid #486743;padding:4px 10px;border-radius:7px;white-space:nowrap;">Angular</span>
+            <span style="color:#8b95a3;border:1px solid #486743;padding:4px 10px;border-radius:7px;white-space:nowrap;">MySQL</span>
+            <span style="color:#8b95a3;border:1px solid #486743;padding:4px 10px;border-radius:7px;white-space:nowrap;">Microservices</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PUBLICATIONS (light box) ===== -->
+  <section id="publications" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#1f8a55;">03</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">Publications</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 8px;font-size:34px;letter-spacing:-0.025em;font-weight:600;color:#16231a;">Peer-reviewed research</h2>
+        <p data-reveal style="margin:0 0 40px;font-size:16px;color:#5d6757;max-width:60ch;">A genuine differentiator this early: published, Scopus-indexed, and peer-reviewed, not a preprint.</p>
+
+        <div data-reveal style="border:1px solid #7b9337;border-radius:18px;background:#f3f4e6;padding:32px;">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#1f8a55;border:1px solid rgba(31,138,85,0.32);background:rgba(31,138,85,0.07);padding:4px 11px;border-radius:999px;white-space:nowrap;">Scopus-indexed</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#5d6757;border:1px solid #7c9640;padding:4px 11px;border-radius:999px;white-space:nowrap;">Peer-reviewed</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#5d6757;border:1px solid #7c9640;padding:4px 11px;border-radius:999px;white-space:nowrap;">Co-author</span>
+          </div>
+          <h3 style="margin:0;font-size:22px;font-weight:600;color:#16231a;letter-spacing:-0.01em;line-height:1.3;max-width:44ch;">Deep Learning and Image Analytics for Forest Land Management: Classification and Object Detection</h3>
+          <p style="margin:12px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;color:#5e6552;">Journal of Computer Science · Vol. 22 · 2026 &nbsp;·&nbsp; from my final-year engineering project (2024–2025)</p>
+          <p style="margin:20px 0 0;font-size:15.5px;color:#46554a;line-height:1.65;max-width:78ch;">Trained a <span style="color:#1f7d50;font-weight:600;">YOLOv8</span> detector for tree enumeration from high-resolution satellite imagery, and a custom <span style="color:#1f7d50;font-weight:600;">CNN classifying 10 species at 93% precision</span>. Annotated datasets via Roboflow and extracted satellite imagery through Google Earth Engine for model training and land analysis.</p>
+          <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">
+            <a href="https://doi.org/10.3844/jcssp.2026.1100.1112" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#1f8a55;color:#f4fffd;font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;transition:background .2s;" style-hover="background:#1a7247">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f4fffd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Read via DOI
+            </a>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#5e6552;">doi.org/10.3844/jcssp.2026.1100.1112</span>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;">
+              <span style="color:#38473a;border:1px solid #7c9640;padding:5px 11px;border-radius:7px;white-space:nowrap;">YOLOv8</span>
+              <span style="color:#38473a;border:1px solid #7c9640;padding:5px 11px;border-radius:7px;white-space:nowrap;">CNN</span>
+              <span style="color:#38473a;border:1px solid #7c9640;padding:5px 11px;border-radius:7px;white-space:nowrap;">Google Earth Engine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS (dark box) ===== -->
+  <section id="projects" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="position:relative;overflow:hidden;border:1px solid #3f6934;border-radius:24px;background:linear-gradient(180deg,#182517,#121e14);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 34px 70px -44px rgba(0,0,0,0.8);padding:60px;">
+        <div style="position:absolute;inset:0;background:radial-gradient(50% 40% at 85% 0%, rgba(53,184,119,0.10), transparent 70%);pointer-events:none;"></div>
+        <div style="position:relative;">
+          <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;">
+            <div>
+              <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+                <span style="color:#35b877;">04</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Projects</span>
+              </div>
+              <h2 style="margin:20px 0 0;font-size:34px;letter-spacing:-0.025em;font-weight:600;color:#f4f6fa;">Selected work</h2>
+              <p style="margin:10px 0 0;font-size:16px;color:#8b95a3;max-width:56ch;">Production AI systems and personal builds. Click any project for the full breakdown: architecture, stack, and impact.</p>
+            </div>
+            <a href="https://github.com/Aditya083103" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;color:#dbe2ea;font-weight:600;font-size:14px;padding:11px 18px;border:1px solid #406a36;border-radius:10px;transition:border-color .2s,background .2s;" style-hover="border-color:#35b877;background:rgba(53,184,119,0.06)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.34.85.01 1.7.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+              GitHub
+            </a>
+          </div>
+
+          <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;">
+            <a href="AIRP.dc.html" data-reveal data-tilt class="tilt-card flagship-card" style="grid-column:1 / -1;text-decoration:none;border:1px solid #416a38;border-radius:18px;background:#111c13;padding:30px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px;">
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#35b877;border:1px solid rgba(53,184,119,0.35);background:rgba(53,184,119,0.08);padding:3px 10px;border-radius:999px;white-space:nowrap;">Flagship</span>
+                    <span style="display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#e0954a;border:1px solid rgba(224,149,74,0.35);background:rgba(224,149,74,0.08);padding:3px 10px;border-radius:999px;white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:#e0954a;"></span>In progress</span>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">Personal build · May 2026 - Present</span>
+                  </div>
+                  <h3 style="margin:14px 0 0;font-size:24px;font-weight:600;color:#f4f6fa;letter-spacing:-0.02em;">AIRP: Autonomous Investment Research Platform</h3>
+                </div>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#35b877;white-space:nowrap;">View case study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                </span>
+              </div>
+              <p style="margin:14px 0 0;font-size:15.5px;color:#a7b1bd;line-height:1.6;max-width:82ch;">A production-grade system that simulates an investment committee: 8 AI agents research a company in parallel, then debate it as a Contrarian challenges the consensus. A Portfolio Manager delivers a Buy / Hold / Sell verdict with a conviction score, as a downloadable, source-cited memo in under 90 seconds.</p>
+              <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;">
+                <div data-tilt style="border:1px solid #436740;border-radius:10px;background:#0e140d;padding:14px 16px;"><div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:#f4f6fa;" data-count="8" data-dec="0">8</div><div style="font-size:12px;color:#8b95a3;margin-top:3px;">Committee agents</div></div>
+                <div data-tilt style="border:1px solid #436740;border-radius:10px;background:#0e140d;padding:14px 16px;"><div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:#f4f6fa;">&lt;90<span style="color:#35b877;font-size:16px;">s</span></div><div style="font-size:12px;color:#8b95a3;margin-top:3px;">Per memo</div></div>
+                <div data-tilt style="border:1px solid #436740;border-radius:10px;background:#0e140d;padding:14px 16px;"><div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:#f4f6fa;" data-count="2" data-dec="0">2</div><div style="font-size:12px;color:#8b95a3;margin-top:3px;">Debate rounds</div></div>
+                <div data-tilt style="border:1px solid #436740;border-radius:10px;background:#0e140d;padding:14px 16px;"><div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:#f4f6fa;">PDF</div><div style="font-size:12px;color:#8b95a3;margin-top:3px;">Downloadable memo</div></div>
+              </div>
+              <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">FastAPI</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">WebSocket</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">ChromaDB</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">LangSmith</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">React</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">PostgreSQL</span>
+              </div>
+            </a>
+            <a href="Baggage-Claim.dc.html" data-reveal data-tilt class="tilt-card" style="text-decoration:none;border:1px solid #416a38;border-radius:16px;background:#111c13;padding:26px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:#8b95a3;border:1px solid #406a36;padding:3px 9px;border-radius:999px;white-space:nowrap;">Airline client · Delivered</span>
+              </div>
+              <h3 style="margin:14px 0 0;font-size:19px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Baggage AI Claims</h3>
+              <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.55;flex:1;">Five-agent LangGraph pipeline that files baggage-damage claims from a chat in under <span style="color:#c8d2de;">2 minutes</span>. CV damage detection, bag-tag OCR, and pHash fraud checks route each claim to auto-approval or staff review.</p>
+              <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">Multi-agent</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">CV / OCR</span>
+              </div>
+              <div style="margin-top:18px;display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#35b877;">
+                View details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+              </div>
+            </a>
+            <a href="Voice-Chatbot.dc.html" data-reveal data-tilt class="tilt-card" style="text-decoration:none;border:1px solid #416a38;border-radius:16px;background:#111c13;padding:26px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:#35b877;border:1px solid rgba(53,184,119,0.35);background:rgba(53,184,119,0.08);padding:3px 9px;border-radius:999px;white-space:nowrap;">Enterprise platform</span>
+              </div>
+              <h3 style="margin:14px 0 0;font-size:19px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Voice Chatbot Framework</h3>
+              <p style="margin:10px 0 0;font-size:14px;color:#8b95a3;line-height:1.55;flex:1;">Enterprise multi-domain assistant for <span style="color:#c8d2de;">HR, IT &amp; policy</span> queries, built with LangGraph intent orchestration over hybrid RAG, semantic caching, full observability, and a cloud-agnostic core. Delivered on Azure, with AWS ongoing.</p>
+              <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">LangGraph</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">Hybrid RAG</span>
+                <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">FastAPI</span>
+              </div>
+              <div style="margin-top:18px;display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#35b877;">
+                View details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+              </div>
+            </a>
+          </div>
+
+          <div data-reveal style="margin-top:28px;padding-top:28px;border-top:1px solid #3e693c;">
+            <a href="https://github.com/Aditya083103" target="_blank" rel="noopener" data-tilt style="display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;border:1px solid #436740;border-radius:12px;background:#0e140d;padding:16px 20px;transition:border-color .2s;" style-hover="border-color:#35b877">
+              <span style="display:flex;align-items:center;gap:12px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e7ebf0"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.34.85.01 1.7.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#e7ebf0;">github.com/Aditya083103</span>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS (light box) ===== -->
+  <section id="skills" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#1f8a55;">05</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">Skills</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 44px;font-size:34px;letter-spacing:-0.025em;font-weight:600;color:#16231a;">The stack I work in</h2>
+
+        <div class="r-skills" style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;">
+          <div data-reveal data-tilt style="grid-column:1 / -1;border:1px solid #7b9337;border-radius:14px;background:#f3f4e6;padding:24px 26px;min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <span style="width:8px;height:8px;border-radius:2px;background:#1f8a55;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#2b3a2d;">GenAI / Agentic AI</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">LangChain</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">LangGraph</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">LangSmith</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">RAG</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Multi-Agent Systems</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Agent Orchestration</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Tool / Function Calling</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Prompt Engineering</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Embeddings</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">LLM Evaluation</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="80" data-tilt style="border:1px solid #7b9337;border-radius:14px;background:#f3f4e6;padding:24px 26px;min-width:0;transition:border-color .25s,box-shadow .25s,transform .25s;" style-hover="border-color:#1f8a55;box-shadow:0 20px 40px -24px rgba(31,138,85,0.35);transform:translateY(-2px)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <span style="width:8px;height:8px;border-radius:2px;background:#1f8a55;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#2b3a2d;">LLMs</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Azure OpenAI</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Anthropic Claude</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Google Gemini</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="120" data-tilt style="border:1px solid #7b9337;border-radius:14px;background:#f3f4e6;padding:24px 26px;min-width:0;transition:border-color .25s,box-shadow .25s,transform .25s;" style-hover="border-color:#1f8a55;box-shadow:0 20px 40px -24px rgba(31,138,85,0.35);transform:translateY(-2px)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <span style="width:8px;height:8px;border-radius:2px;background:#1f8a55;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#2b3a2d;">Languages &amp; Backend</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Python</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">FastAPI</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Pydantic</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">WebSockets</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">REST APIs</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Java</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">SQL</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="80" data-tilt style="border:1px solid #7b9337;border-radius:14px;background:#f3f4e6;padding:24px 26px;min-width:0;transition:border-color .25s,box-shadow .25s,transform .25s;" style-hover="border-color:#1f8a55;box-shadow:0 20px 40px -24px rgba(31,138,85,0.35);transform:translateY(-2px)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <span style="width:8px;height:8px;border-radius:2px;background:#1f8a55;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#2b3a2d;">Data &amp; Frontend</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">ChromaDB</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">PostgreSQL</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Redis</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">React</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Tailwind</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="120" data-tilt style="border:1px solid #7b9337;border-radius:14px;background:#f3f4e6;padding:24px 26px;min-width:0;transition:border-color .25s,box-shadow .25s,transform .25s;" style-hover="border-color:#1f8a55;box-shadow:0 20px 40px -24px rgba(31,138,85,0.35);transform:translateY(-2px)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <span style="width:8px;height:8px;border-radius:2px;background:#1f8a55;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#2b3a2d;">Tools &amp; Cloud</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Docker</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Git / GitHub</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">AWS</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Azure</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">Linux</span>
+              <span style="color:#2b3a2d;border:1px solid #7a9439;background:#f3f4e6;padding:7px 13px;border-radius:8px;white-space:nowrap;display:inline-block;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),background .22s,color .22s,border-color .22s,box-shadow .22s;" style-hover="transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,#35b877,#1f8a55);color:#f4fffd;border-color:#1f8a55;box-shadow:0 14px 26px -10px rgba(31,138,85,0.55)">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS (dark box) ===== -->
+  <section id="certifications" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #3f6934;border-radius:24px;background:linear-gradient(180deg,#182517,#121e14);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 34px 70px -44px rgba(0,0,0,0.8);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#35b877;">06</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Certifications</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 32px;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">Credentials</h2>
+
+        <div data-reveal class="r-certs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/1FhWb0IgY4e7UYn-c9kmSVtUtnQoLtwXd/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">Microsoft AI Agents: Foundations to Applications</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/14O8g9K_5s3DDioJuf-1ym1Ew9kZKB_h8/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">AWS Academy Graduate: Cloud Foundations</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/188mbC-vVKT9GdnSj3xGd6w3kao1FO-Wz/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">100 Days of Code: Python Pro Bootcamp</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/1NqDEDlE24cPeoFJr15ng4DI09Z3iBnx1/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">Java Full Stack Certification</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/13Ef15X-ONa_qGcj3RpUU3026jskQuzln/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">Python Data Structures</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/1KNJIWi-rNUXgIzi8NuXmPnZPMXyTaVAB/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">Google Data Analytics</div>
+            </div>
+          </a>
+          <a data-tilt class="tilt-card cert-card" href="https://drive.google.com/file/d/1SDdK1WKnFJcQsp5vb4BvZPvke37lO01F/view?usp=sharing" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;border:1px solid #3e693c;border-radius:14px;padding:20px 20px 18px;background:linear-gradient(160deg,#152113,#0e160f);position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;" style-hover="border-color:#35b877;box-shadow:0 16px 32px -16px rgba(53,184,119,0.4);transform:translateY(-3px);">
+            <span aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(53,184,119,0.16),transparent 70%);"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+              <span style="width:36px;height:36px;border-radius:10px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.32);display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.7 13.5 7 22l5-3 5 3-1.7-8.5"/></svg>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6c63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#35b877;letter-spacing:0.1em;text-transform:uppercase;">Certificate</div>
+              <div style="margin-top:7px;font-size:14px;color:#e7ebe0;line-height:1.4;font-weight:500;">Google Project Management</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION (light box) ===== -->
+  <section id="education" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#1f8a55;">07</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">Education</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 32px;font-size:28px;letter-spacing:-0.02em;font-weight:600;color:#16231a;">Academic background</h2>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div data-reveal data-tilt style="border:1px solid #7b9337;border-radius:16px;background:#f3f4e6;padding:24px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span style="width:44px;height:44px;border-radius:11px;background:#dfe7cb;border:1px solid #779335;display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f8a55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </span>
+              <div>
+                <h3 style="margin:0;font-size:18px;font-weight:600;color:#16231a;letter-spacing:-0.01em;">B.Tech, Computer Engineering</h3>
+                <div style="font-size:14px;color:#5d6757;margin-top:3px;">KJ Somaiya Institute of Technology, Mumbai</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:20px;font-family:'JetBrains Mono',monospace;">
+              <span style="font-size:12.5px;color:#5e6552;">2021 - 2025</span>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5e6552;">CGPA</span>
+                <span style="font-size:22px;font-weight:600;color:#1f7d50;" data-count="9.05" data-dec="2">9.05</span>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="60" data-tilt style="border:1px solid #7b923d;border-radius:16px;background:#ebeed9;padding:22px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span style="width:40px;height:40px;border-radius:10px;background:#e2e8cd;border:1px solid #7b9437;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#8f9678;">12</span>
+              <div>
+                <h3 style="margin:0;font-size:16px;font-weight:600;color:#2b3a2d;letter-spacing:-0.01em;">Higher Secondary (12th)</h3>
+                <div style="font-size:13.5px;color:#5e6552;margin-top:3px;">Chandibai Himmathmal Mansukhani College, Mumbai</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:20px;font-family:'JetBrains Mono',monospace;">
+              <span style="font-size:12.5px;color:#5e6552;">2019 - 2021</span>
+              <span style="font-size:18px;font-weight:600;color:#38473a;" data-count="92.16" data-dec="2" data-suffix="%">92.16%</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="120" data-tilt style="border:1px solid #7b923d;border-radius:16px;background:#ebeed9;padding:22px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span style="width:40px;height:40px;border-radius:10px;background:#e2e8cd;border:1px solid #7b9437;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#8f9678;">10</span>
+              <div>
+                <h3 style="margin:0;font-size:16px;font-weight:600;color:#2b3a2d;letter-spacing:-0.01em;">Secondary (10th)</h3>
+                <div style="font-size:13.5px;color:#5e6552;margin-top:3px;">Fatima High School, Mumbai</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:20px;font-family:'JetBrains Mono',monospace;">
+              <span style="font-size:12.5px;color:#5e6552;">2018 - 2019</span>
+              <span style="font-size:18px;font-weight:600;color:#38473a;" data-count="91.2" data-dec="1" data-suffix="%">91.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MORE OF ME (dark box, link cards) ===== -->
+  <section id="more" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #3f6934;border-radius:24px;background:linear-gradient(180deg,#182517,#121e14);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 34px 70px -44px rgba(0,0,0,0.8);padding:48px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#e0954a;">08</span><span style="width:26px;height:1px;background:#e0954a;opacity:.5;"></span><span style="color:#828d9c;">Off the clock</span>
+        </div>
+        <h2 data-reveal style="margin:18px 0 4px;font-size:26px;letter-spacing:-0.02em;font-weight:600;color:#f4f6fa;">A little more of me</h2>
+        <p data-reveal style="margin:0 0 30px;font-size:15px;color:#8b95a3;max-width:56ch;">The stuff that isn't on the résumé. Take a peek if you like.</p>
+
+        <div data-reveal class="r-more" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <a href="Beyond.dc.html" data-tilt style="text-decoration:none;position:relative;overflow:hidden;border:1px solid #735e35;border-radius:18px;background:linear-gradient(150deg,rgba(224,149,74,0.10),#111c13 55%);padding:28px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s;" style-hover="border-color:#e0954a;transform:translateY(-3px)">
+            <span style="width:44px;height:44px;border-radius:12px;background:rgba(224,149,74,0.12);border:1px solid rgba(224,149,74,0.3);display:inline-flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0954a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+            </span>
+            <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Life away from the terminal</h3>
+            <p style="margin:9px 0 0;font-size:14px;color:#9aa4b0;line-height:1.55;flex:1;">Road trips, treks, greener roads, and cricket every Sunday: a small photo journal.</p>
+            <span style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#e0954a;">Open the journal
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e0954a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a href="Arcade.dc.html" data-tilt style="text-decoration:none;position:relative;overflow:hidden;border:1px solid #27676e;border-radius:18px;background:linear-gradient(150deg,rgba(53,184,119,0.10),#111c13 55%);padding:28px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s;" style-hover="border-color:#35b877;transform:translateY(-3px)">
+            <span style="width:44px;height:44px;border-radius:12px;background:rgba(53,184,119,0.12);border:1px solid rgba(53,184,119,0.3);display:inline-flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+            </span>
+            <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Coffee break: play a round</h3>
+            <p style="margin:9px 0 0;font-size:14px;color:#9aa4b0;line-height:1.55;flex:1;">A little Snake, built the same way I build everything else: from scratch, no dependencies.</p>
+            <span style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#35b877;">Play now
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW I THINK (light box, link-out to write-ups) ===== -->
+  <section id="how-i-think" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#1f8a55;">09</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">How I think</span>
+        </div>
+        <h2 data-reveal style="margin:20px 0 8px;font-size:34px;letter-spacing:-0.025em;font-weight:600;color:#16231a;">Notes on the decisions behind the work</h2>
+        <p data-reveal style="margin:0 0 32px;font-size:16px;color:#5d6757;max-width:60ch;">Short write-ups on technical calls I made while building AIRP, and why. Not polished blog posts, just the reasoning.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <a data-reveal data-tilt href="Note-Adversarial-Debate.dc.html" style="text-decoration:none;border:1px solid #7c9640;border-radius:18px;background:#f3f4e6;padding:28px 30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;transition:border-color .2s,transform .2s;" style-hover="border-color:#1f8a55;transform:translateY(-2px)">
+            <div style="min-width:0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#616443;border:1px solid #7c9640;padding:4px 11px;border-radius:999px;white-space:nowrap;">Multi-agent design</span>
+              <h3 style="margin:14px 0 0;font-size:19px;font-weight:600;color:#16231a;letter-spacing:-0.01em;">Why AIRP uses adversarial debate instead of a single LLM judge</h3>
+              <p style="margin:10px 0 0;font-size:14.5px;color:#46554a;line-height:1.6;max-width:64ch;">A Contrarian agent that attacks the consensus, and why that produces a more trustworthy verdict than asking one model to grade its own reasoning.</p>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#1f8a55;white-space:nowrap;">Read the write-up
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f8a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a data-reveal data-reveal-delay="80" data-tilt href="Note-Typed-State.dc.html" style="text-decoration:none;border:1px solid #7c9640;border-radius:18px;background:#f3f4e6;padding:28px 30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;transition:border-color .2s,transform .2s;" style-hover="border-color:#1f8a55;transform:translateY(-2px)">
+            <div style="min-width:0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#616443;border:1px solid #7c9640;padding:4px 11px;border-radius:999px;white-space:nowrap;">State design</span>
+              <h3 style="margin:14px 0 0;font-size:19px;font-weight:600;color:#16231a;letter-spacing:-0.01em;">Why AIRP's shared graph state is a TypedDict, not a Pydantic model</h3>
+              <p style="margin:10px 0 0;font-size:14.5px;color:#46554a;line-height:1.6;max-width:64ch;">Eight agents read and write one shared state object on every node transition. Here's why validation lives at the edges instead of on the state itself.</p>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#1f8a55;white-space:nowrap;">Read the write-up
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f8a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a data-reveal data-reveal-delay="140" data-tilt href="Note-LLM-Timeouts.dc.html" style="text-decoration:none;border:1px solid #7c9640;border-radius:18px;background:#f3f4e6;padding:28px 30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;transition:border-color .2s,transform .2s;" style-hover="border-color:#1f8a55;transform:translateY(-2px)">
+            <div style="min-width:0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#616443;border:1px solid #7c9640;padding:4px 11px;border-radius:999px;white-space:nowrap;">Production reliability</span>
+              <h3 style="margin:14px 0 0;font-size:19px;font-weight:600;color:#16231a;letter-spacing:-0.01em;">Why every LLM call in AIRP has an explicit, bounded timeout</h3>
+              <p style="margin:10px 0 0;font-size:14.5px;color:#46554a;line-height:1.6;max-width:64ch;">A node once hung with zero log output, well past its own soft timeout. The fix, and why a node-level watchdog alone can't catch this.</p>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#1f8a55;white-space:nowrap;">Read the write-up
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f8a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT (light box, mail-first, no form) ===== -->
+  <section id="contact" style="scroll-margin-top:88px;">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 24px;">
+      <div class="secbox" style="border:1px solid #7c9233;border-radius:24px;background:linear-gradient(180deg,#eef0dc,#dee4c4);box-shadow:0 34px 70px -44px rgba(0,0,0,0.6);padding:60px;">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+          <span style="color:#1f8a55;">10</span><span style="width:26px;height:1px;background:#1f8a55;opacity:.5;"></span><span style="color:#5e6552;">Contact</span>
+        </div>
+        <div data-reveal style="margin-top:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <h2 style="margin:0;font-size:38px;letter-spacing:-0.03em;font-weight:600;color:#16231a;">Let's build something.</h2>
+          <span style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#1f8a55;border:1px solid rgba(31,138,85,0.3);background:rgba(31,138,85,0.06);padding:6px 12px;border-radius:999px;white-space:nowrap;">
+            <span style="position:relative;display:inline-flex;width:8px;height:8px;">
+              <span style="position:absolute;inset:0;border-radius:50%;background:#1f8a55;animation:pulse-ring 2.2s ease-out infinite;"></span>
+              <span style="position:relative;width:8px;height:8px;border-radius:50%;background:#1f8a55;"></span>
+            </span>
+            Open to new opportunities
+          </span>
+        </div>
+        <p data-reveal style="margin:14px 0 34px;font-size:16px;color:#5d6757;max-width:60ch;">GenAI, LLM, Agentic AI or RAG engineering roles. The fastest way to reach me is email. Tap below and it opens straight in your mail app.</p>
+
+        <a data-reveal href="mailto:adityabhavsar31.ab@gmail.com?subject=Let%27s%20connect" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;border-radius:18px;background:linear-gradient(120deg,#1f8a55,#176b43);padding:26px 30px;box-shadow:0 20px 40px -22px rgba(31,138,85,0.7);transition:transform .2s;" style-hover="transform:translateY(-2px)">
+          <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+            <span style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,0.15);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f4fffd" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <div style="min-width:0;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(244,255,253,0.75);">Email me</div>
+              <div style="font-size:19px;font-weight:600;color:#f4fffd;letter-spacing:-0.01em;margin-top:3px;overflow-wrap:anywhere;">adityabhavsar31.ab@gmail.com</div>
+            </div>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#f4fffd;">Open mail app
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f4fffd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <div data-reveal class="r-socials" style="margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+          <a href="https://linkedin.com/in/aditya-bhavsar31" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;min-width:0;border:1px solid #7b9437;border-radius:12px;padding:16px 18px;background:#f3f4e6;transition:border-color .2s,background .2s;" style-hover="border-color:#1f8a55;background:#fff" data-tilt>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="#1f8a55"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            <div style="min-width:0;overflow:hidden;"><div style="font-size:14px;color:#16231a;font-weight:500;">LinkedIn</div><div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5e6552;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">in/aditya-bhavsar31</div></div>
+          </a>
+          <a href="https://github.com/Aditya083103" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;min-width:0;border:1px solid #7b9437;border-radius:12px;padding:16px 18px;background:#f3f4e6;transition:border-color .2s,background .2s;" style-hover="border-color:#1f8a55;background:#fff" data-tilt>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="#1f8a55"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.34.85.01 1.7.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+            <div style="min-width:0;overflow:hidden;"><div style="font-size:14px;color:#16231a;font-weight:500;">GitHub</div><div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5e6552;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Aditya083103</div></div>
+          </a>
+          <a href="https://x.com/AdityaB99682834" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;min-width:0;border:1px solid #7b9437;border-radius:12px;padding:16px 18px;background:#f3f4e6;transition:border-color .2s,background .2s;" style-hover="border-color:#1f8a55;background:#fff" data-tilt>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#1f8a55"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <div style="min-width:0;overflow:hidden;"><div style="font-size:14px;color:#16231a;font-weight:500;">X / Twitter</div><div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5e6552;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">@AdityaB99682834</div></div>
+          </a>
+          <a href="https://instagram.com/aditya_bhavsar31" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;min-width:0;border:1px solid #7b9437;border-radius:12px;padding:16px 18px;background:#f3f4e6;transition:border-color .2s,background .2s;" style-hover="border-color:#1f8a55;background:#fff" data-tilt>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1f8a55" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+            <div style="min-width:0;overflow:hidden;"><div style="font-size:14px;color:#16231a;font-weight:500;">Instagram</div><div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5e6552;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">@aditya_bhavsar31</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div style="max-width:1160px;margin:0 auto;padding:28px 32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">
+      <span>© 2026 Aditya Bhavsar. All rights reserved.</span>
+      <span style="display:flex;align-items:center;gap:14px;">
+        <span>GenAI · Agentic AI · RAG, built to ship</span>
+        <img src="https://visitor-badge.laobi.icu/badge?page_id=aditya-bhavsar.portfolio&left_text=views" alt="Portfolio view count" style="height:18px;opacity:.75;border-radius:4px;" />
+      </span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motionIntensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;signature&quot;,&quot;tsType&quot;:&quot;'calm'|'signature'|'playful'&quot;,&quot;options&quot;:[&quot;calm&quot;,&quot;signature&quot;,&quot;playful&quot;],&quot;section&quot;:&quot;Feel&quot;},&quot;heroMotif&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;leaves&quot;,&quot;tsType&quot;:&quot;'leaves'|'fireflies'|'aurora'&quot;,&quot;options&quot;:[&quot;leaves&quot;,&quot;fireflies&quot;,&quot;aurora&quot;],&quot;section&quot;:&quot;Feel&quot;},&quot;soundEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Feel&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._init) return;
+    this._init = true;
+
+    const intensity = this.props.motionIntensity ?? 'signature';
+    const tiltMul = intensity === 'calm' ? 0.4 : intensity === 'playful' ? 1.6 : 1;
+    const depthMul = intensity === 'calm' ? 0.4 : intensity === 'playful' ? 1.7 : 1;
+    const leafSpeedMul = intensity === 'calm' ? 1.8 : intensity === 'playful' ? 0.55 : 1;
+    const revealMul = intensity === 'calm' ? 0.6 : intensity === 'playful' ? 1.4 : 1;
+    const revealDur = intensity === 'calm' ? 0.95 : intensity === 'playful' ? 0.5 : 0.7;
+    const soundOn = this.props.soundEnabled ?? true;
+
+    // Game-style select sound on click
+    let _actx;
+    const playSelect = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(720, t0);
+        osc.frequency.exponentialRampToValueAtTime(1080, t0 + 0.08);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.18);
+      } catch (e) {}
+    };
+    document.addEventListener('click', (e) => { if (soundOn && e.target.closest('a, button, [data-dir]')) playSelect(); }, true);
+
+    // Subtle hover tick
+    const playHover = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.06);
+      } catch (e) {}
+    };
+    let _lastHover = null;
+    document.addEventListener('mouseover', (e) => {
+      if (!soundOn) return;
+      const t = e.target.closest('a, button, [data-dir]');
+      if (t && t !== _lastHover) { _lastHover = t; playHover(); }
+      else if (!t) { _lastHover = null; }
+    }, true);
+
+    // Scroll reveal
+    const reveal = Array.from(document.querySelectorAll('[data-reveal]'));
+    const revealEl = (el) => {
+      const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+      el.style.transitionDelay = d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    reveal.forEach(el => {
+      el.style.transition = 'opacity ' + revealDur + 's cubic-bezier(.16,1,.3,1), transform ' + revealDur + 's cubic-bezier(.16,1,.3,1)';
+      el.style.willChange = 'opacity, transform';
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95) {
+        el.style.opacity = '1'; el.style.transform = 'none'; el._revealed = true;
+      } else {
+        el.style.opacity = '0'; el.style.transform = 'perspective(800px) rotateX(' + (10 * revealMul).toFixed(1) + 'deg) translateY(' + (22 * revealMul).toFixed(1) + 'px)';
+      }
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { revealEl(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    reveal.forEach(el => { if (!el._revealed) io.observe(el); });
+    setTimeout(() => {
+      reveal.forEach(el => { if (getComputedStyle(el).opacity === '0') revealEl(el); });
+    }, 1200);
+    // Self-healing backstop: the observer/timeout above can race on some
+    // browsers and leave off-screen sections permanently invisible, so
+    // re-check on scroll/resize and a couple of later timers too.
+    const revealSweep = () => {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (getComputedStyle(el).opacity === '0' && el.getBoundingClientRect().top < vh * 1.15) revealEl(el);
+      });
+    };
+    window.addEventListener('scroll', revealSweep, { passive: true });
+    window.addEventListener('resize', revealSweep);
+    setTimeout(revealSweep, 2500);
+    setTimeout(revealSweep, 6000);
+
+    // Active-nav highlighting
+    const links = Array.from(document.querySelectorAll('[data-nav]'));
+    const setActive = (id) => {
+      links.forEach(l => {
+        const on = l.getAttribute('data-nav') === id;
+        l.style.color = on ? '#e7ebf0' : '#9ba6b4';
+        const bar = l.querySelector('[data-navbar]');
+        if (bar) bar.style.opacity = on ? '1' : '0';
+      });
+    };
+    const sections = links.map(l => document.getElementById(l.getAttribute('data-nav'))).filter(Boolean);
+    const so = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => so.observe(s));
+
+    // Mobile nav menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navIcon = document.getElementById('nav-toggle-icon');
+    if (navToggle && mobileMenu && !navToggle._wired) {
+      navToggle._wired = true;
+      const closeIcon = '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>';
+      const openIcon = '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>';
+      const setOpen = (open) => {
+        mobileMenu.style.display = 'block';
+        requestAnimationFrame(() => { mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0'; });
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        if (navIcon) navIcon.innerHTML = open ? closeIcon : openIcon;
+      };
+      navToggle.addEventListener('click', () => setOpen(navToggle.getAttribute('aria-expanded') !== 'true'));
+      mobileMenu.querySelectorAll('[data-mnav]').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    }
+
+    // Scroll progress bar
+    const pb = document.getElementById('scroll-progress');
+    if (pb) {
+      const upd = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        pb.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+      };
+      window.addEventListener('scroll', upd, { passive: true });
+      upd();
+    }
+
+    // Count-up stats on scroll into view
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const counters = Array.from(document.querySelectorAll('[data-count]'));
+    const fmt = (el, v) => {
+      const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      const suf = el.getAttribute('data-suffix') || '';
+      const pre = el.getAttribute('data-prefix') || '';
+      return pre + Number(v).toFixed(dec) + suf;
+    };
+    counters.forEach(el => { if (!reduce) el.textContent = fmt(el, 0); });
+    const runCount = (el) => {
+      if (reduce) return;
+      const target = parseFloat(el.getAttribute('data-count'));
+      const dur = 1200, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(el, target * e);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    counters.forEach(el => cio.observe(el));
+
+    // Card hover glow (green)
+    document.querySelectorAll('#projects a[href$=".dc.html"], #more a[href$=".dc.html"]').forEach(c => {
+      c.addEventListener('mouseenter', () => { c.style.boxShadow = '0 26px 55px -26px rgba(53,184,119,0.55)'; });
+      c.addEventListener('mouseleave', () => { c.style.boxShadow = 'none'; });
+    });
+
+    // Subtle 3D tilt on interactive cards
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mouseenter', () => { card.style.transformStyle = 'preserve-3d'; card.style.transition = 'transform .05s linear'; });
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateX(${(-py * 6 * tiltMul).toFixed(2)}deg) rotateY(${(px * 7 * tiltMul).toFixed(2)}deg) translateY(${(-4 * tiltMul).toFixed(1)}px) translateZ(${(6 * tiltMul).toFixed(1)}px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+          card.style.transform = 'none';
+          card.style.transformStyle = '';
+        });
+      });
+
+      // Hero depth-of-field parallax (aurora/grid/motes/leaves layers)
+      const heroEl = document.getElementById('top');
+      const depthLayers = heroEl ? Array.from(heroEl.querySelectorAll('[data-depth]')) : [];
+      if (heroEl && depthLayers.length) {
+        depthLayers.forEach(l => { l.style.transition = 'transform .3s ease-out'; });
+        heroEl.addEventListener('mousemove', (e) => {
+          const r = heroEl.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          depthLayers.forEach(l => {
+            const d = (parseFloat(l.getAttribute('data-depth')) || 0) * depthMul;
+            l.style.transform = `translate3d(${(px * d).toFixed(1)}px, ${(py * d).toFixed(1)}px, 0)`;
+          });
+        });
+        heroEl.addEventListener('mouseleave', () => { depthLayers.forEach(l => { l.style.transform = ''; }); });
+      }
+      document.querySelectorAll('[data-depth="26"] span').forEach(s => {
+        const base = parseFloat(getComputedStyle(s).animationDuration) || 14;
+        s.style.animationDuration = (base * leafSpeedMul).toFixed(1) + 's';
+      });
+    }
+  }
+
+  renderVals() {
+    const motif = this.props.heroMotif ?? 'leaves';
+    return {
+      leavesDisplay: motif === 'leaves' ? 'block' : 'none',
+      motesOpacity: motif === 'aurora' ? 0.3 : 1,
+      motesBrightness: motif === 'fireflies' ? 1.7 : 1,
+      auroraOpacity: motif === 'fireflies' ? 0.55 : 1
+    };
+  }
+}
+</script>
+</body>
+</html>

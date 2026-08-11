@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Arcade: A Coffee-Break Snake Game | Aditya Bhavsar</title>
+<meta name="description" content="A from-scratch Snake game, built the same way I build everything else: no dependencies.">
+<!-- TODO: set real domain once deployed, e.g. <link rel="canonical" href="https://yourdomain.com/pages/arcade.html"> -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arcade: A Coffee-Break Snake Game | Aditya Bhavsar">
+<meta property="og:description" content="A from-scratch Snake game, built the same way I build everything else: no dependencies.">
+<meta property="og:image" content="assets/images/og/og-arcade.png">
+<!-- TODO: set real domain once deployed, e.g. <meta property="og:url" content="https://yourdomain.com/pages/arcade.html"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Arcade: A Coffee-Break Snake Game | Aditya Bhavsar">
+<meta name="twitter:description" content="A from-scratch Snake game, built the same way I build everything else: no dependencies.">
+<meta name="twitter:image" content="assets/images/og/og-arcade.png">
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<!-- Analytics: Plausible (privacy-friendly, cookieless, no consent banner needed).
+     1. Sign up at https://plausible.io and add this site.
+     2. Replace "yourdomain.com" below with your real domain.
+     3. Uncomment the script tag. -->
+<!-- <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e0b; color: #e7ebf0; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background:
+    radial-gradient(50% 42% at 88% 6%, rgba(53,184,119,0.12), transparent 60%),
+    radial-gradient(44% 40% at 10% 14%, rgba(163,204,74,0.06), transparent 62%),
+    radial-gradient(58% 50% at 50% 106%, rgba(31,138,85,0.10), transparent 60%); }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
+  a { color: #35b877; text-decoration: none; }
+  a:hover { color: #7ee0aa; }
+  ::selection { background: rgba(53,184,119,0.28); }
+  a:focus-visible, button:focus-visible { outline:2px solid #35b877; outline-offset:2px; border-radius:4px; }
+  button { font-family: inherit; }
+  @keyframes auroraDrift { 0%{transform:translate3d(-3%,-2%,0) scale(1);} 50%{transform:translate3d(4%,3%,0) scale(1.12);} 100%{transform:translate3d(-3%,-2%,0) scale(1);} }
+  @keyframes moteDrift { 0%,100%{transform:translate(0,0);opacity:.16;} 50%{transform:translate(12px,-26px);opacity:.7;} }
+  @keyframes fadeUp { from{opacity:0;transform:perspective(900px) rotateX(8deg) translateY(22px);} to{opacity:1;transform:none;} }
+  @keyframes canvasPulse { 0%,100%{box-shadow:0 0 0 0 rgba(53,184,119,0.0), 0 0 0 1px #20301d inset;} 50%{box-shadow:0 0 26px 2px rgba(53,184,119,0.28), 0 0 0 1px rgba(53,184,119,0.4) inset;} }
+  @keyframes scorePop { 0%{transform:scale(1);} 30%{transform:scale(1.18);} 100%{transform:scale(1);} }
+  .snake-running { animation: canvasPulse 2.2s ease-in-out infinite; }
+  .score-pop { animation: scorePop .38s cubic-bezier(.34,1.56,.64,1); }
+  @media (prefers-reduced-motion: reduce){ *,*::before,*::after { animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+  @media (max-width:760px){ .r-play{ flex-direction:column !important; align-items:stretch !important; } }
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;overflow-x:hidden;">
+  <div style="position:absolute;inset:0;height:520px;background:radial-gradient(46% 60% at 78% 0%, rgba(53,184,119,0.14), transparent 66%),radial-gradient(40% 50% at 12% 4%, rgba(224,149,74,0.08), transparent 70%);animation:auroraDrift 22s ease-in-out infinite;pointer-events:none;"></div>
+
+  <div aria-hidden="true" data-depth="14" style="position:absolute;inset:0;height:520px;overflow:hidden;pointer-events:none;">
+    <span style="position:absolute;left:20%;top:32%;width:6px;height:6px;border-radius:50%;background:#8fecc0;box-shadow:0 0 10px 2px rgba(87,210,149,0.55);animation:moteDrift 8s ease-in-out infinite;"></span>
+    <span style="position:absolute;left:40%;top:22%;width:4px;height:4px;border-radius:50%;background:#a3d94a;box-shadow:0 0 8px 2px rgba(163,217,74,0.45);animation:moteDrift 10s ease-in-out infinite;animation-delay:1.3s;"></span>
+    <span style="position:absolute;left:68%;top:30%;width:5px;height:5px;border-radius:50%;background:#8fecc0;box-shadow:0 0 9px 2px rgba(87,210,149,0.5);animation:moteDrift 9s ease-in-out infinite;animation-delay:.6s;"></span>
+    <span style="position:absolute;left:84%;top:42%;width:4px;height:4px;border-radius:50%;background:#a3d94a;box-shadow:0 0 8px 2px rgba(163,217,74,0.4);animation:moteDrift 11s ease-in-out infinite;animation-delay:2.4s;"></span>
+  </div>
+
+  <div style="position:relative;max-width:1000px;margin:0 auto;padding:40px 28px 80px;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <a href="Portfolio.dc.html" style="display:inline-flex;align-items:center;gap:9px;color:#9aa4b0;font-size:14px;padding:9px 15px;border:1px solid #47683d;border-radius:10px;transition:border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+        Back to portfolio
+      </a>
+      <a href="Beyond.dc.html" style="display:inline-flex;align-items:center;gap:8px;color:#e0954a;font-family:'JetBrains Mono',monospace;font-size:12.5px;">Life away from the terminal
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e0954a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div style="margin-top:52px;max-width:56ch;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+        <span style="color:#35b877;">Coffee break</span><span style="width:26px;height:1px;background:#35b877;opacity:.5;"></span><span style="color:#828d9c;">Snake</span>
+      </div>
+      <h1 style="margin:18px 0 0;font-size:clamp(36px,7vw,52px);line-height:1.04;letter-spacing:-0.035em;font-weight:700;color:#f4f6fa;">Stuck reading? Play a round.</h1>
+      <p style="margin:16px 0 0;font-size:16px;color:#a7b1bd;line-height:1.6;">A little Snake, built the same way I build everything else: from scratch, no dependencies. Arrow keys or WASD; tap the pad on mobile.</p>
+    </div>
+
+    <div class="r-play" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;animation-delay:.1s;">
+      <div data-tilt style="position:relative;flex:0 0 auto;transition:transform .3s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-3px)">
+        <canvas id="snake-canvas" width="400" height="400" tabindex="0" style="display:block;width:min(400px,80vw);height:min(400px,80vw);border:1px solid #3d6a35;border-radius:16px;background:#0a0f0b;outline:none;touch-action:none;"></canvas>
+        <div id="snake-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(8,11,16,0.82);backdrop-filter:blur(3px);border-radius:16px;text-align:center;padding:20px;cursor:pointer;">
+          <div id="snake-overlay-title" style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#dce6f5;">SNAKE</div>
+          <div id="snake-overlay-sub" style="font-size:13px;color:#8b95a3;max-width:26ch;line-height:1.5;">Press the button or an arrow key to start.</div>
+          <button id="snake-start" style="display:inline-flex;align-items:center;gap:8px;background:#35b877;color:#05100e;font-weight:600;font-size:14px;padding:10px 20px;border:none;border-radius:9px;cursor:pointer;font-family:inherit;transition:background .2s;" style-hover="background:#57d295">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#05100e"><path d="M8 5v14l11-7z"/></svg>
+            Play
+          </button>
+        </div>
+      </div>
+
+      <div style="flex:1 1 220px;min-width:200px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:16px 18px;transition:border-color .25s;" style-hover="border-color:#35b877">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#828d9c;">Score</div>
+            <div id="snake-score" style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:600;color:#f4f6fa;margin-top:4px;display:inline-block;">0</div>
+          </div>
+          <div data-tilt style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:16px 18px;transition:border-color .25s;" style-hover="border-color:#35b877">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#828d9c;">Best</div>
+            <div id="snake-high" style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:600;color:#35b877;margin-top:4px;display:inline-block;">0</div>
+          </div>
+        </div>
+        <div style="border:1px solid #436a3d;border-radius:12px;background:#0e150f;padding:16px;display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:6px;justify-content:center;align-content:center;">
+          <span></span>
+          <button data-dir="up" aria-label="Up" style="grid-column:2;grid-row:1;border:1px solid #47683d;background:#111811;border-radius:9px;color:#9ba6b4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s,border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0;transform:perspective(300px) rotateX(-8deg) scale(1.08)" style-active="transform:perspective(300px) rotateX(20deg) scale(0.92)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
+          <button data-dir="left" aria-label="Left" style="grid-column:1;grid-row:2;border:1px solid #47683d;background:#111811;border-radius:9px;color:#9ba6b4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s,border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0;transform:perspective(300px) rotateX(-8deg) scale(1.08)" style-active="transform:perspective(300px) rotateX(20deg) scale(0.92)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button data-dir="down" aria-label="Down" style="grid-column:2;grid-row:2;border:1px solid #47683d;background:#111811;border-radius:9px;color:#9ba6b4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s,border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0;transform:perspective(300px) rotateX(-8deg) scale(1.08)" style-active="transform:perspective(300px) rotateX(20deg) scale(0.92)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button data-dir="right" aria-label="Right" style="grid-column:3;grid-row:2;border:1px solid #47683d;background:#111811;border-radius:9px;color:#9ba6b4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s,border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0;transform:perspective(300px) rotateX(-8deg) scale(1.08)" style-active="transform:perspective(300px) rotateX(20deg) scale(0.92)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#828d9c;line-height:1.6;">Eat the <span style="color:#3fb950;">■</span> to grow. Hit a wall or yourself and it's over.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:flex;justify-content:center;">
+      <a href="Portfolio.dc.html" style="display:inline-flex;align-items:center;gap:9px;color:#9aa4b0;font-size:14px;padding:11px 20px;border:1px solid #47683d;border-radius:11px;transition:border-color .2s,color .2s;" style-hover="border-color:#35b877;color:#e7ebf0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+        Back to portfolio
+      </a>
+    </div>
+
+  </div>
+
+  <footer style="border-top:1px solid #1b261b;margin-top:40px;">
+    <div style="max-width:1000px;margin:0 auto;padding:28px 32px;display:flex;justify-content:center;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">
+      <span>© 2026 Aditya Bhavsar. All rights reserved.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._init) return;
+    this._init = true;
+
+    let _actx;
+    const playSelect = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(720, t0);
+        osc.frequency.exponentialRampToValueAtTime(1080, t0 + 0.08);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.18);
+      } catch (e) {}
+    };
+    document.addEventListener('click', (e) => { if (e.target.closest('a, button, [data-dir]')) playSelect(); }, true);
+
+    // Subtle hover tick
+    const playHover = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.06);
+      } catch (e) {}
+    };
+    let _lastHover = null;
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target.closest('a, button, [data-dir]');
+      if (t && t !== _lastHover) { _lastHover = t; playHover(); }
+      else if (!t) { _lastHover = null; }
+    }, true);
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mouseenter', () => { card.style.transformStyle = 'preserve-3d'; card.style.transition = 'transform .05s linear'; });
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-4px) translateZ(6px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+          card.style.transform = 'none';
+          card.style.transformStyle = '';
+        });
+      });
+      const depthLayers = Array.from(document.querySelectorAll('[data-depth]'));
+      if (depthLayers.length) {
+        depthLayers.forEach(l => { l.style.transition = 'transform .3s ease-out'; });
+        window.addEventListener('mousemove', (e) => {
+          const px = e.clientX / window.innerWidth - 0.5;
+          const py = e.clientY / window.innerHeight - 0.5;
+          depthLayers.forEach(l => {
+            const d = parseFloat(l.getAttribute('data-depth')) || 0;
+            l.style.transform = `translate3d(${(px * d).toFixed(1)}px, ${(py * d).toFixed(1)}px, 0)`;
+          });
+        });
+      }
+    }
+
+    this._initGame();
+  }
+
+  _initGame() {
+    const canvas = document.getElementById('snake-canvas');
+    if (!canvas || canvas._wired) return;
+    canvas._wired = true;
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('snake-overlay');
+    const oTitle = document.getElementById('snake-overlay-title');
+    const oSub = document.getElementById('snake-overlay-sub');
+    const startBtn = document.getElementById('snake-start');
+    const scoreEl = document.getElementById('snake-score');
+    const highEl = document.getElementById('snake-high');
+
+    const N = 20, CELL = canvas.width / N;
+    const COL = { bg: '#0a0f0b', grid: 'rgba(255,255,255,0.03)', snake: '#35b877', head: '#8fecc0', food: '#3fb950' };
+    let snake, dir, nextDir, food, score, running, timer, speed;
+
+    let high = 0;
+    try { high = parseInt(localStorage.getItem('portfolio_snake_high') || '0', 10) || 0; } catch (e) {}
+    highEl.textContent = high;
+
+    const rnd = (n) => Math.floor(Math.random() * n);
+    function placeFood() {
+      while (true) {
+        const f = { x: rnd(N), y: rnd(N) };
+        if (!snake.some(s => s.x === f.x && s.y === f.y)) { food = f; return; }
+      }
+    }
+    function cell(x, y, color, inset) {
+      const p = inset || 0;
+      ctx.fillStyle = color;
+      const r = 4;
+      const px = x * CELL + p, py = y * CELL + p, s = CELL - p * 2;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(px, py, s, s, r); else ctx.rect(px, py, s, s);
+      ctx.fill();
+    }
+    function draw() {
+      ctx.fillStyle = COL.bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = COL.grid;
+      ctx.lineWidth = 1;
+      for (let i = 1; i < N; i++) {
+        ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, canvas.height); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(canvas.width, i * CELL); ctx.stroke();
+      }
+      cell(food.x, food.y, COL.food, 4);
+      snake.forEach((s, i) => cell(s.x, s.y, i === 0 ? COL.head : COL.snake, 1.5));
+    }
+    function reset() {
+      snake = [{ x: 9, y: 10 }, { x: 8, y: 10 }, { x: 7, y: 10 }];
+      dir = { x: 1, y: 0 }; nextDir = { x: 1, y: 0 };
+      score = 0; speed = 130;
+      scoreEl.textContent = '0';
+      placeFood(); draw();
+    }
+    function gameOver() {
+      running = false; clearInterval(timer); timer = null;
+      canvas.classList.remove('snake-running');
+      if (score > high) {
+        high = score; highEl.textContent = high; try { localStorage.setItem('portfolio_snake_high', String(high)); } catch (e) {}
+        highEl.classList.remove('score-pop'); void highEl.offsetWidth; highEl.classList.add('score-pop');
+      }
+      oTitle.textContent = 'GAME OVER';
+      oSub.textContent = 'Score ' + score + (score >= high && score > 0 ? ' - new best!' : '') + '. Press Play or an arrow to retry.';
+      startBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="#05100e"><path d="M8 5v14l11-7z"/></svg> Play again';
+      overlay.style.display = 'flex';
+    }
+    function step() {
+      dir = nextDir;
+      const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+      if (head.x < 0 || head.y < 0 || head.x >= N || head.y >= N || snake.some(s => s.x === head.x && s.y === head.y)) { gameOver(); return; }
+      snake.unshift(head);
+      if (head.x === food.x && head.y === food.y) {
+        score += 1; scoreEl.textContent = score;
+        scoreEl.classList.remove('score-pop'); void scoreEl.offsetWidth; scoreEl.classList.add('score-pop');
+        if (speed > 70 && score % 4 === 0) { speed -= 6; clearInterval(timer); timer = setInterval(step, speed); }
+        placeFood();
+      } else {
+        snake.pop();
+      }
+      draw();
+    }
+    function start() {
+      reset(); running = true;
+      overlay.style.display = 'none';
+      canvas.classList.add('snake-running');
+      clearInterval(timer); timer = setInterval(step, speed);
+      canvas.focus();
+    }
+    function setDir(x, y) {
+      if (dir && (dir.x === -x && dir.y === -y)) return;
+      nextDir = { x, y };
+    }
+    const KEYS = {
+      ArrowUp: [0, -1], w: [0, -1], W: [0, -1],
+      ArrowDown: [0, 1], s: [0, 1], S: [0, 1],
+      ArrowLeft: [-1, 0], a: [-1, 0], A: [-1, 0],
+      ArrowRight: [1, 0], d: [1, 0], D: [1, 0]
+    };
+    canvas.addEventListener('keydown', (e) => {
+      const k = KEYS[e.key];
+      if (!k) return;
+      e.preventDefault();
+      if (!running) { start(); }
+      setDir(k[0], k[1]);
+    });
+    startBtn.addEventListener('click', (e) => { e.stopPropagation(); start(); });
+    overlay.addEventListener('click', () => start());
+    document.querySelectorAll('[data-dir]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const map = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+        const d = map[btn.getAttribute('data-dir')];
+        if (!running) start();
+        setDir(d[0], d[1]);
+      });
+    });
+
+    reset();
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

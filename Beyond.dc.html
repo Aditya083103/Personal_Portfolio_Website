@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Beyond the Code | Aditya Bhavsar</title>
+<meta name="description" content="Travel, treks, road trips, and cricket: life outside of building AI systems.">
+<!-- TODO: set real domain once deployed, e.g. <link rel="canonical" href="https://yourdomain.com/pages/beyond.html"> -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Beyond the Code | Aditya Bhavsar">
+<meta property="og:description" content="Travel, treks, road trips, and cricket: life outside of building AI systems.">
+<meta property="og:image" content="assets/images/og/og-beyond.png">
+<!-- TODO: set real domain once deployed, e.g. <meta property="og:url" content="https://yourdomain.com/pages/beyond.html"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beyond the Code | Aditya Bhavsar">
+<meta name="twitter:description" content="Travel, treks, road trips, and cricket: life outside of building AI systems.">
+<meta name="twitter:image" content="assets/images/og/og-beyond.png">
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<!-- Analytics: Plausible (privacy-friendly, cookieless, no consent banner needed).
+     1. Sign up at https://plausible.io and add this site.
+     2. Replace "yourdomain.com" below with your real domain.
+     3. Uncomment the script tag. -->
+<!-- <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Instrument+Sans:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e0b; color: #e7ebf0; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background:
+    radial-gradient(50% 40% at 12% 6%, rgba(224,149,74,0.10), transparent 60%),
+    radial-gradient(46% 42% at 90% 12%, rgba(53,184,119,0.09), transparent 62%),
+    radial-gradient(58% 50% at 50% 106%, rgba(31,138,85,0.10), transparent 60%); }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
+  a { color: #e0954a; text-decoration: none; }
+  a:hover { color: #edb072; }
+  ::selection { background: rgba(224,149,74,0.28); }
+  a:focus-visible { outline:2px solid #e0954a; outline-offset:2px; border-radius:4px; }
+  @keyframes auroraDrift { 0%{transform:translate3d(-3%,-2%,0) scale(1);} 50%{transform:translate3d(4%,3%,0) scale(1.12);} 100%{transform:translate3d(-3%,-2%,0) scale(1);} }
+  @keyframes moteDrift { 0%,100%{transform:translate(0,0);opacity:.16;} 50%{transform:translate(12px,-26px);opacity:.7;} }
+  @keyframes hillDriftBack { 0%{transform:translateX(0);} 100%{transform:translateX(-60px);} }
+  @keyframes hillDriftFront { 0%{transform:translateX(0);} 100%{transform:translateX(-100px);} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:none;} }
+  @keyframes galleryGlow { 0%,100%{box-shadow:0 0 0 rgba(224,149,74,0);} 50%{box-shadow:0 18px 44px -22px rgba(224,149,74,0.35);} }
+  @media (prefers-reduced-motion: reduce){ *,*::before,*::after { animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+  @media (max-width:760px){ .r-gallery{ grid-template-columns:1fr !important; } .r-gallery .tall{ grid-row:auto !important; } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;min-height:100vh;overflow-x:hidden;">
+  <div style="position:absolute;inset:0;height:520px;background:radial-gradient(46% 60% at 22% 0%, rgba(224,149,74,0.16), transparent 66%),radial-gradient(40% 50% at 88% 4%, rgba(53,184,119,0.10), transparent 70%);animation:auroraDrift 22s ease-in-out infinite;pointer-events:none;"></div>
+  <div aria-hidden="true" data-depth="14" style="position:absolute;inset:0;height:520px;overflow:hidden;pointer-events:none;">
+    <span style="position:absolute;left:14%;top:34%;width:6px;height:6px;border-radius:50%;background:#e0954a;box-shadow:0 0 10px 2px rgba(224,149,74,0.5);animation:moteDrift 8s ease-in-out infinite;"></span>
+    <span style="position:absolute;left:30%;top:20%;width:4px;height:4px;border-radius:50%;background:#8fecc0;box-shadow:0 0 8px 2px rgba(87,210,149,0.5);animation:moteDrift 10s ease-in-out infinite;animation-delay:1.4s;"></span>
+    <span style="position:absolute;left:62%;top:26%;width:5px;height:5px;border-radius:50%;background:#a3d94a;box-shadow:0 0 9px 2px rgba(163,217,74,0.45);animation:moteDrift 9s ease-in-out infinite;animation-delay:.7s;"></span>
+    <span style="position:absolute;left:80%;top:40%;width:4px;height:4px;border-radius:50%;background:#e0954a;box-shadow:0 0 8px 2px rgba(224,149,74,0.45);animation:moteDrift 11s ease-in-out infinite;animation-delay:2.2s;"></span>
+    <span style="position:absolute;left:46%;top:44%;width:3px;height:3px;border-radius:50%;background:#8fecc0;box-shadow:0 0 7px 2px rgba(87,210,149,0.5);animation:moteDrift 12s ease-in-out infinite;animation-delay:3s;"></span>
+  </div>
+
+  <!-- scenic hill silhouettes, slow parallax drift -->
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:220px;height:300px;overflow:hidden;pointer-events:none;">
+    <svg width="160%" height="180" viewBox="0 0 2400 260" preserveAspectRatio="none" style="position:absolute;left:0;bottom:60px;opacity:.5;animation:hillDriftBack 46s linear infinite alternate;"><polygon points="0,260 0,150 220,90 460,170 720,60 980,150 1260,80 1540,170 1820,90 2100,160 2400,110 2400,260" fill="#173a24"></polygon></svg>
+    <svg width="170%" height="200" viewBox="0 0 2600 260" preserveAspectRatio="none" style="position:absolute;left:0;bottom:0;opacity:.75;animation:hillDriftFront 34s linear infinite alternate;"><polygon points="0,260 0,190 260,120 520,200 820,110 1100,190 1400,130 1700,210 2000,140 2300,200 2600,150 2600,260" fill="#0e2417"></polygon></svg>
+  </div>
+
+  <div style="position:relative;max-width:1100px;margin:0 auto;padding:40px 28px 80px;">
+
+    <!-- top bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <a href="Portfolio.dc.html" style="display:inline-flex;align-items:center;gap:9px;color:#9aa4b0;font-size:14px;padding:9px 15px;border:1px solid #47683d;border-radius:10px;transition:border-color .2s,color .2s;" style-hover="border-color:#e0954a;color:#e7ebf0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>
+        Back to portfolio
+      </a>
+      <a href="Portfolio.dc.html#contact" style="display:inline-flex;align-items:center;gap:8px;color:#35b877;font-family:'JetBrains Mono',monospace;font-size:12.5px;">Get in touch
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+
+    <!-- header -->
+    <div style="margin-top:56px;max-width:60ch;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">
+        <span style="color:#e0954a;">Off the clock</span><span style="width:26px;height:1px;background:#e0954a;opacity:.5;"></span><span style="color:#828d9c;">Photo journal</span>
+      </div>
+      <h1 style="margin:18px 0 0;font-size:clamp(38px,7vw,54px);line-height:1.04;letter-spacing:-0.035em;font-weight:700;color:#f4f6fa;">Life away from the terminal</h1>
+      <p style="margin:18px 0 0;font-size:17px;color:#a7b1bd;line-height:1.6;">The best debugging happens on the road. Between builds you'll find me chasing greener routes, higher trails, and a game of cricket every Sunday. A few frames from that life below. Drop your own in anytime.</p>
+    </div>
+
+    <!-- gallery -->
+    <div class="r-gallery" style="margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:18px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;animation-delay:.15s;">
+
+      <!-- road trips (tall) -->
+      <div class="tall" data-reveal="" data-tilt="" style="grid-row:span 2;display:flex;flex-direction:column;border:1px solid #416945;border-radius:18px;overflow:hidden;background:#0c120d;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s;" style-hover="transform:translateY(-6px);border-color:#e0954a">
+        <image-slot id="beyond-road" shape="rect" src="assets/images/beyond/weekend_rides_tothehills.jpeg" placeholder="Drop a road-trip photo" fit="cover" style="width:100%;flex:1;min-height:340px;"></image-slot>
+        <div style="padding:22px 24px;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <span style="width:30px;height:30px;border-radius:8px;background:rgba(224,149,74,0.1);border:1px solid rgba(224,149,74,0.28);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e0954a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18.4 9c-.4-.9-1.3-1.5-2.3-1.5H7.9c-1 0-1.9.6-2.3 1.5L4.5 11.1C3.7 11.3 3 12.1 3 13v3c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#828d9c;">On the road</span>
+          </div>
+          <div style="margin-top:12px;font-size:18px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Weekend rides to the hills</div>
+          <p style="margin:6px 0 0;font-size:14px;color:#9aa4b0;line-height:1.55;">Car or bike, an early start and no fixed plan: the whole point is the drive.</p>
+        </div>
+      </div>
+
+      <!-- outdoors -->
+      <div data-reveal="" data-reveal-delay="80" data-tilt="" style="border:1px solid #416945;border-radius:18px;overflow:hidden;background:#0c120d;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s;" style-hover="transform:translateY(-6px);border-color:#e0954a">
+        
+        <image-slot id="beyond-outdoors" shape="rect" src="assets/images/beyond/offgrid.jpeg" placeholder="Drop an adventure photo" fit="cover" style="width:100%;height:280px;"></image-slot><div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <span style="width:30px;height:30px;border-radius:8px;background:rgba(224,149,74,0.1);border:1px solid rgba(224,149,74,0.28);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e0954a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#828d9c;">Outdoors</span>
+          </div>
+          <div style="margin-top:12px;font-size:17px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Off-grid when the week clears</div>
+        </div>
+      </div>
+
+      <!-- treks & nature -->
+      <div data-reveal="" data-reveal-delay="140" data-tilt="" style="border:1px solid #416945;border-radius:18px;overflow:hidden;background:#0c120d;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s;" style-hover="transform:translateY(-6px);border-color:#35b877">
+        <image-slot id="beyond-nature" shape="rect" src="assets/images/beyond/treks.jpeg" placeholder="Drop a trek / scenery photo" fit="cover" style="width:100%;height:280px;"></image-slot>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <span style="width:30px;height:30px;border-radius:8px;background:rgba(53,184,119,0.1);border:1px solid rgba(53,184,119,0.28);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#828d9c;">Treks &amp; nature</span>
+          </div>
+          <div style="margin-top:12px;font-size:17px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Chasing greener roads</div>
+        </div>
+      </div>
+
+      <!-- cricket (wide) -->
+      <div data-reveal="" data-reveal-delay="200" data-tilt="" style="grid-column:1 / -1;display:flex;flex-wrap:wrap;border:1px solid #416945;border-radius:18px;overflow:hidden;background:#0c120d;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s;" style-hover="transform:translateY(-6px);border-color:#35b877">
+        <image-slot id="beyond-cricket" shape="rect" src="assets/images/beyond/cricket_me.png" placeholder="Drop a photo from the pitch" fit="cover" style="flex:1 1 280px;min-height:220px;"></image-slot>
+        <div style="flex:1 1 280px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <span style="width:30px;height:30px;border-radius:8px;background:rgba(53,184,119,0.1);border:1px solid rgba(53,184,119,0.28);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#35b877" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18"></path></svg></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#828d9c;">On the pitch</span>
+          </div>
+          <div style="margin-top:12px;font-size:20px;font-weight:600;color:#f4f6fa;letter-spacing:-0.01em;">Cricket every Sunday</div>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#9aa4b0;line-height:1.55;max-width:46ch;">Not just a fan. I actually play, every week: same competitive streak that gets a system shipped, minus the deadlines.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- footer nav -->
+    <div style="margin-top:48px;display:flex;justify-content:center;">
+      <a href="Portfolio.dc.html" style="display:inline-flex;align-items:center;gap:9px;color:#9aa4b0;font-size:14px;padding:11px 20px;border:1px solid #47683d;border-radius:11px;transition:border-color .2s,color .2s;" style-hover="border-color:#e0954a;color:#e7ebf0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>
+        Back to portfolio
+      </a>
+    </div>
+
+  </div>
+
+  <footer style="border-top:1px solid #1b261b;margin-top:40px;">
+    <div style="max-width:1000px;margin:0 auto;padding:28px 32px;display:flex;justify-content:center;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#828d9c;">
+      <span>© 2026 Aditya Bhavsar. All rights reserved.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._init) return;
+    this._init = true;
+
+    let _actx;
+    const playSelect = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(720, t0);
+        osc.frequency.exponentialRampToValueAtTime(1080, t0 + 0.08);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.18);
+      } catch (e) {}
+    };
+    document.addEventListener('click', (e) => { if (e.target.closest('a, button, [data-dir]')) playSelect(); }, true);
+
+    // Subtle hover tick
+    const playHover = () => {
+      try {
+        _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (_actx.state === 'suspended') _actx.resume();
+        const t0 = _actx.currentTime;
+        const osc = _actx.createOscillator(); const gain = _actx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05);
+        osc.connect(gain); gain.connect(_actx.destination);
+        osc.start(t0); osc.stop(t0 + 0.06);
+      } catch (e) {}
+    };
+    let _lastHover = null;
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target.closest('a, button, [data-dir]');
+      if (t && t !== _lastHover) { _lastHover = t; playHover(); }
+      else if (!t) { _lastHover = null; }
+    }, true);
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mouseenter', () => { card.style.transformStyle = 'preserve-3d'; card.style.transition = 'transform .05s linear'; });
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-4px) translateZ(6px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+          card.style.transform = 'none';
+          card.style.transformStyle = '';
+        });
+      });
+      const depthLayers = Array.from(document.querySelectorAll('[data-depth]'));
+      if (depthLayers.length) {
+        depthLayers.forEach(l => { l.style.transition = 'transform .3s ease-out'; });
+        window.addEventListener('mousemove', (e) => {
+          const px = e.clientX / window.innerWidth - 0.5;
+          const py = e.clientY / window.innerHeight - 0.5;
+          depthLayers.forEach(l => {
+            const d = parseFloat(l.getAttribute('data-depth')) || 0;
+            l.style.transform = `translate3d(${(px * d).toFixed(1)}px, ${(py * d).toFixed(1)}px, 0)`;
+          });
+        });
+      }
+    }
+
+    const reveal = Array.from(document.querySelectorAll('[data-reveal]'));
+    const vh = window.innerHeight || 800;
+    const show = (el) => {
+      el.style.transitionDelay = (parseInt(el.getAttribute('data-reveal-delay') || '0', 10)) + 'ms';
+      el.style.opacity = '1'; el.style.transform = 'none';
+    };
+    reveal.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95) { el._r = true; }
+      else { el.style.opacity = '0'; el.style.transform = 'perspective(800px) rotateX(10deg) translateY(22px)'; }
+    });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    reveal.forEach(el => { if (!el._r) io.observe(el); });
+    setTimeout(() => reveal.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 1200);
+    // Self-healing backstop: the observer/timeout above can race on some
+    // browsers and leave off-screen sections permanently invisible, so
+    // re-check on scroll/resize and a couple of later timers too.
+    const revealSweep = () => {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (getComputedStyle(el).opacity === '0' && el.getBoundingClientRect().top < vh * 1.15) show(el);
+      });
+    };
+    window.addEventListener('scroll', revealSweep, { passive: true });
+    window.addEventListener('resize', revealSweep);
+    setTimeout(revealSweep, 2500);
+    setTimeout(revealSweep, 6000);
+  }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>
