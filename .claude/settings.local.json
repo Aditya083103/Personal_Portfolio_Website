@@ -17,7 +17,9 @@
       "Bash(python gen_posters.py)",
       "Bash(mkdir -p \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\airp_ref\")",
       "Bash(unzip -o -q \"C:\\\\Users\\\\adity\\\\Downloads\\\\AIRP---Autonomous-Investment-Research-Platform-main \\(5\\).zip\")",
-      "Bash(python \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\gen_note_og.py\")"
+      "Bash(python \"C:\\\\Users\\\\adity\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-adity-OneDrive-Documents-Portfolio-Website\\\\e06eb08d-ba42-41a9-b960-754df7a43e11\\\\scratchpad\\\\gen_note_og.py\")",
+      "Bash(sed -i 's/Portfolio\\\\.dc\\\\.html/index.html/g' Note-Typed-State.dc.html Note-Adversarial-Debate.dc.html Note-LLM-Timeouts.dc.html AIRP.dc.html Beyond.dc.html Arcade.dc.html Voice-Chatbot.dc.html Baggage-Claim.dc.html README.md)",
+      "Bash(echo \"--- done, exit code $? \\(1 = clean\\) ---\")"
     ]
   }
 }

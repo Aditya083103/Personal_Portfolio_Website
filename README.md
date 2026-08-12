@@ -4,7 +4,7 @@
 
 ```
 Portfolio Website/
-├── Portfolio.dc.html          (home page)
+├── index.html          (home page)
 ├── AIRP.dc.html
 ├── Baggage-Claim.dc.html
 ├── Voice-Chatbot.dc.html
@@ -23,14 +23,14 @@ Portfolio Website/
 │   └── videos/
 ```
 
-### Why the `.dc.html` pages stay at the project root
+### Why the pages stay at the project root
 
 `image-slot.js` persists dropped images to `.image-slots.state.json` via a
 sidecar file that the Claude-Design host bridge only allows writing **at the
 project root** — the component's own doc comment states this explicitly.
 `image-slot.js` also fetches that sidecar with a root-relative path.
 
-`Portfolio.dc.html` (headshot) and `Beyond.dc.html` (4 photos) both use
+`index.html` (headshot) and `Beyond.dc.html` (4 photos) both use
 `<image-slot>`, and `support.js`/`image-slot.js` are loaded via `./support.js`
 relative script tags. Moving those pages into a `pages/` subfolder would break
 sidecar reads/writes and the relative script includes. Given that risk, all
@@ -46,7 +46,7 @@ Serve the folder root with any static file server, e.g.:
 npx serve .
 ```
 
-Open `Portfolio.dc.html` (or whichever page you're working on) from the
+Open `index.html` (or whichever page you're working on) from the
 served root — opening via `file://` breaks the `.image-slots.state.json`
 fetch and the `<image-slot>` drop feature.
 
