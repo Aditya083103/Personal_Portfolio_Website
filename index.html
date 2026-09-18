@@ -384,8 +384,9 @@
           </div>
 
           <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;">
-            <a href="AIRP.dc.html" data-reveal data-tilt class="tilt-card flagship-card" style="grid-column:1 / -1;text-decoration:none;border:1px solid #416a38;border-radius:18px;background:#111c13;padding:30px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
-              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px;">
+            <div data-reveal data-tilt class="tilt-card flagship-card" style="position:relative;grid-column:1 / -1;border:1px solid #416a38;border-radius:18px;background:#111c13;padding:30px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
+              <a href="AIRP.dc.html" aria-label="View AIRP case study" style="position:absolute;inset:0;z-index:1;"></a>
+              <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px;pointer-events:none;">
                 <div>
                   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                     <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#35b877;border:1px solid rgba(53,184,119,0.35);background:rgba(53,184,119,0.08);padding:3px 10px;border-radius:999px;white-space:nowrap;">Flagship</span>
@@ -416,13 +417,13 @@
                 <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">ReactFlow</span>
                 <span style="color:#9ba6b4;border:1px solid #406a36;padding:4px 10px;border-radius:7px;white-space:nowrap;">Vercel · Render</span>
               </div>
-              <div style="margin-top:18px;">
-                <span role="link" tabindex="0" data-tilt style="display:inline-flex;align-items:center;gap:8px;background:#35b877;color:#05100e;font-weight:600;font-size:13px;padding:9px 16px;border-radius:8px;transition:background .2s;cursor:pointer;" style-hover="background:#57d295" onclick="event.preventDefault();event.stopPropagation();window.open('https://airp-autonomous-investment-research.vercel.app/','_blank','noopener')" onkeydown="if(event.key==='Enter'){event.stopPropagation();window.open('https://airp-autonomous-investment-research.vercel.app/','_blank','noopener')}">
+              <div style="margin-top:18px;position:relative;z-index:2;">
+                <a href="https://airp-autonomous-investment-research.vercel.app/" target="_blank" rel="noopener" data-tilt style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#35b877;color:#05100e;font-weight:600;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;transition:background .2s;" style-hover="background:#57d295">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#05100e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
                   Try the live app
-                </span>
+                </a>
               </div>
-            </a>
+            </div>
             <a href="Baggage-Claim.dc.html" data-reveal data-tilt class="tilt-card" style="text-decoration:none;border:1px solid #416a38;border-radius:16px;background:#111c13;padding:26px;display:flex;flex-direction:column;transition:border-color .2s,transform .1s;" style-hover="border-color:#35b877">
               <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                 <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:#8b95a3;border:1px solid #406a36;padding:3px 9px;border-radius:999px;white-space:nowrap;">Airline client · Delivered</span>
