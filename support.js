@@ -1597,8 +1597,14 @@
   var REACT_DOM_SRI = "sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1";
   function hideRawTemplate() {
     const s = document.createElement("style");
+    s.id = "dc-hide-raw";
     s.textContent = "x-dc{display:none!important}";
     document.head.appendChild(s);
+    return s;
+  }
+  function showRawTemplateFallback() {
+    const s = document.getElementById("dc-hide-raw");
+    if (s) s.remove();
   }
   function loadScript(src, integrity) {
     return new Promise((resolve2, reject) => {
@@ -1680,8 +1686,13 @@
     else document.addEventListener("DOMContentLoaded", () => api.__dcBoot());
   }
   hideRawTemplate();
-  loadReactUmd().then(init).catch((err) => {
-    console.error("[dc] failed to load React or boot:", err);
-    throw err;
+  var dcFallbackTimer = setTimeout(showRawTemplateFallback, 6e3);
+  loadReactUmd().then(() => {
+    clearTimeout(dcFallbackTimer);
+    return init();
+  }).catch((err) => {
+    clearTimeout(dcFallbackTimer);
+    console.error("[dc] failed to load React or boot — showing raw page instead:", err);
+    showRawTemplateFallback();
   });
 })();
